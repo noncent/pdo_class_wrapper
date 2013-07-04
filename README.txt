@@ -35,6 +35,7 @@ Demo files available:
 3)  insert_demo.php
 4)  update_demo.php
 5)  delete_demo.php
+6)  result_demo.php
 
 
 Useful methods are:
