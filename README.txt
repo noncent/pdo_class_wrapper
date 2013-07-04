@@ -42,15 +42,13 @@ Useful methods are:
 
   Show Run Query:
   
-  If you want to see your executed query then you can find a method 'traceEnable' and also you can log your error in
-  your error.log file.
+  If you want to see your executed query then you can find a method 'traceEnable' and also you can log your error in your error.log file.
 
 
 
 Final words:
 ------------
-Guys, just check demo files and let us know all the issues and bugs. We hope that we will get your 
-suggestions and queries.
+Guys, just check demo files and let us know all the issues and bugs. We hope that we will get your suggestions and queries.
 
 
 Regards:
