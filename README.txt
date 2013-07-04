@@ -50,7 +50,7 @@ Useful methods are:
 Final words:
 ------------
 Guys, just check demo files and let us know all the issues and bugs. We hope that we will get your 
-Suggestions and queries.
+suggestions and queries.
 
 
 Regards:
