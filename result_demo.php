@@ -9,7 +9,7 @@ function PA($array){
 }
 
 // include pdo class wrapper
-include_once 'class.pdowrapper_temp.php';
+include_once 'class.pdowrapper.php';
 
 // create new object of class wrapper
 $p = new PdoWrapper();
