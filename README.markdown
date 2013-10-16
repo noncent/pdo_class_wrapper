@@ -600,8 +600,6 @@ $db->setErrorLog(true);
 <h4>Example Connection Page:</h4>
 <pre>
 	<code>
-<?php 
-
 // include PDO Class Wrapper 
 include_once 'class/class.pdowrapper.php'; 
 
@@ -628,14 +626,12 @@ $aWhere = array('id'=>23);
 // call update function 
 $q = $p->update('test', $dataArray, $aWhere)->showQuery()->affectedRows(); 
 
-?>
 
 Output:
 
 UPDATE `test` SET first_name = "sangeeta", last_name = "mishra", age = 35 WHERE id = 23 ;
 	
 1
-
 	</code>
 </pre>
 
@@ -645,7 +641,9 @@ UPDATE `test` SET first_name = "sangeeta", last_name = "mishra", age = 35 WHERE 
 Cheers!!
 <br />
 Priyadarshan Salkar | priyadarshan.salkar[at]lbi.co.in
+<br />
 Bhaskar Rabha  |bhaskar.rabha[at]lbi.co.in
+<br />
 Neeraj Singh | neeraj.singh[at]lbi.co.in
 
 
