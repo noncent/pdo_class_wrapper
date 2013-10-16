@@ -211,315 +211,442 @@ Example:
 	</code>
 </pre>
 
-insert():
+<h4>insert():</h4>
+
 Method name and parameter
-insert( string $sTable, array $aData )
+<pre><code>insert( string $sTable, array $aData )</code></pre>
 
 Explanations:
 By insert method you can insert record into selected table. Just pass data as an array with fields as array key and the array data will insert in to table. Insert method automatically convert your array data in to SQL injection safe data.
 
 Example:
-$dataArray = array('first_name'=>'Sid','last_name'=>'Mike','age'=>45); 
-$data = $db->insert('test',$dataArray)->getLastInsertId(); 
 
-Raw Query: 
-INSERT INTO `test` (first_name,last_name,age) VALUES ("sid","mike",45);
+<pre>
+	</code>
+		$dataArray = array('first_name'=>'Sid','last_name'=>'Mike','age'=>45); 
+		$data = $db->insert('test',$dataArray)->getLastInsertId(); 
 
-insertBatch():
+		Raw Query: 
+		INSERT INTO `test` (first_name,last_name,age) VALUES ("sid","mike",45);
+	</code>
+</pre>
+
+
+<h4>insertBatch():</h4>
+
 Method name and parameter
-insertBatch(string $sTable, array $aData, boolean $safeModeInsert )
+<pre><code>insertBatch(string $sTable, array $aData, boolean $safeModeInsert )</code></pre>
 
 Explanations:
 You can use this method for inserting multiple array data in same table. You have to just send full array data and rest of thing insertBatch will handle. You can send third parameter as false if you don’t want to insert parameterize insert or send true if want to secure insertions.
 
 insertBatch works with MySQL transactions so you don’t need to worry about failure data. It will be rollback if anything goes wrong.
 
- 
 Example:	
-$dataArray[] = array('first_name'=>'Sid','last_name'=>'Mike','age'=>45); 
-$dataArray[] = array('first_name'=>'Scott','last_name'=>'Dimon','age'=>78);
-$dataArray[] = array('first_name'=>'Meena','last_name'=>'Verma','age'=>23);
 
-$data = $db->insertBatch('test',$dataArray, true)->getAllLastInsertId(); 
+<pre>
+	</code>
+		$dataArray[] = array('first_name'=>'Sid','last_name'=>'Mike','age'=>45); 
+		$dataArray[] = array('first_name'=>'Scott','last_name'=>'Dimon','age'=>78);
+		$dataArray[] = array('first_name'=>'Meena','last_name'=>'Verma','age'=>23);
 
-Raw Query: 
-INSERT INTO `test` (first_name, last_name, age) VALUES ("sid", "mike", 45);
-INSERT INTO `test` (first_name, last_name, age) VALUES ("scott", "dimon", 78);
-INSERT INTO `test` (first_name, last_name, age) VALUES ("meena", "verma", 23);
+		$data = $db->insertBatch('test',$dataArray, true)->getAllLastInsertId(); 
 
-update():
+		Raw Query: 
+		INSERT INTO `test` (first_name, last_name, age) VALUES ("sid", "mike", 45);
+		INSERT INTO `test` (first_name, last_name, age) VALUES ("scott", "dimon", 78);
+		INSERT INTO `test` (first_name, last_name, age) VALUES ("meena", "verma", 23);
+	</code>
+</pre>
+
+<h4>update():</h4>
+
 Method name and parameter
-update( string $sTable, array $aData, array $aWhere, string  $sOther)
+<pre><code>update( string $sTable, array $aData, array $aWhere, string  $sOther)</code></pre>
 
 Explanations:
 	Update method is use for update a table with array data. You can send array data as update data in table.
 	
-Example: 
-$dataArray = array('first_name'=>'Sangeeta','last_name'=>'Mishra','age'=>35); 
-$aWhere = array('id'=>23); 
-$data = $db->update('test', $dataArray, $aWhere->affectedRows();
+Example:
+ 
+<pre>
+	</code>
+		$dataArray = array('first_name'=>'Sangeeta','last_name'=>'Mishra','age'=>35); 
+		$aWhere = array('id'=>23); 
+		$data = $db->update('test', $dataArray, $aWhere->affectedRows();
 
-Raw Query: 
-UPDATE `test` SET first_name = "sangeeta", last_name = "mishra", age = 35 WHERE id = 23 ;
+		Raw Query: 
+		UPDATE `test` SET first_name = "sangeeta", last_name = "mishra", age = 35 WHERE id = 23 ;
 
-Or
+		Or
 
-$dataArray = array('first_name'=>'Sonia','last_name'=>'Shukla','age'=>23); 
-$aWhere = array('age'=>35, 'last_name'=>'Mishra'); 
-$data = $db->update('test', $dataArray, $aWhere)->affectedRows(); 
+		$dataArray = array('first_name'=>'Sonia','last_name'=>'Shukla','age'=>23); 
+		$aWhere = array('age'=>35, 'last_name'=>'Mishra'); 
+		$data = $db->update('test', $dataArray, $aWhere)->affectedRows(); 
 
-Raw Query: 
-UPDATE `test` SET first_name = "sonia", last_name = "shukla", age = 23 WHERE age = 35 AND last_name = "mishra" ;
-
-
-
-
+		Raw Query: 
+		UPDATE `test` SET first_name = "sonia", last_name = "shukla", age = 23 WHERE age = 35 AND last_name = "mishra" ;
+	</code>
+</pre>
 
 
-delete():
+<h4>delete():</h4>
+
 Method name and parameter
-delete( string $sTable, array $aWhere, string  $sOther )
+<pre><code>delete( string $sTable, array $aWhere, string  $sOther )</code></pre>
 
 Explanations:
 You can delete records from table by send table name and your where clause array.
 
 Example:
-$aWhere = array('age'=>35); 
-$data = $db->delete('test', $aWhere)->affectedRows(); 
 
-Raw Query: 
-DELETE FROM `test` WHERE age = 35 ;
+<pre>
+	</code>
+		$aWhere = array('age'=>35); 
+		$data = $db->delete('test', $aWhere)->affectedRows(); 
 
-$aWhere = array('age'=>45, 'first_name'=> 'Sonu'); 
-$data = $db->delete('test', $aWhere)->affectedRows(); 
+		Raw Query: 
+		DELETE FROM `test` WHERE age = 35 ;
 
-Raw Query: 
-DELETE FROM `test` WHERE age = 45 AND first_name = "sonu" ;
+		$aWhere = array('age'=>45, 'first_name'=> 'Sonu'); 
+		$data = $db->delete('test', $aWhere)->affectedRows(); 
 
-truncate():
+		Raw Query: 
+		DELETE FROM `test` WHERE age = 45 AND first_name = "sonu" ;
+	</code>
+</pre>
+
+
+<h4>truncate():</h4>
+
 Method name and parameter
-truncate( string $sTable )
+<pre><code>truncate( string $sTable )</code></pre>
 
 Explanations:
 You can truncate table by just pass table name.
 
 Example:
-$data = $db->truncate('test'); 
 
-Raw Query: 
-TRUNCATE TABLE `test`;
+<pre>
+	<code>
+		$data = $db->truncate('test'); 
+		
+		Raw Query: 
+		TRUNCATE TABLE `test`;
+	</code>
+</pre>	
 
  
-drop():
+<h4>drop():</h4>
+
 Method name and parameter
-drop( string $sTable )
+<pre><code>drop( string $sTable )</code></pre>
 
 Explanations:
 You can drop table by just pass table name.
 
 Example:
-$data = $db->drop('test'); 
 
-Raw Query: 
-DROP TABLE `test`;
+<pre>
+	<code>
+		$data = $db->drop('test'); 
+
+		Raw Query: 
+		DROP TABLE `test`;
+	</code>
+</pre>
 
 
-describe():
+<h4>describe():</h4>
+
 Method name and parameter
-describe( string $sTable )
+<pre><code>describe( string $sTable )</code></pre>
 
 Explanations:
 You can get a table field name and data type.
 
 Example:
-$data = $db->describe('test'); 
 
-Raw Query: 
-DESC  `test`;
+<pre>
+	<code>
+		$data = $db->describe('test'); 
+
+		Raw Query: 
+		DESC  `test`;
+	</code>
+</pre>
 
  
-count():
+<h4>count():</h4>
+
 Method name and parameter
-count( string $sTable )
+<pre><code>count( string $sTable )</code></pre>
 
 Explanations:
 This function will return the number of total rows in a table.
 
 Example:
-$data = $db->count('test'); 
 
-Raw Query: 
-SELECT COUNT(*) AS numrows FROM `test`;
+<pre>
+	<code>
+		$data = $db->count('test'); 
+
+		Raw Query: 
+		SELECT COUNT(*) AS numrows FROM `test`;
+	</code>
+</pre>
 
 
-showQuery():
+<h4>showQuery():</h4>
+
 Method name and parameter
-count( Boolean $logfile )
+<pre><code>count( Boolean $logfile )</code></pre>
+
 
 Explanations:
 By this function you can get executed query. It will show raw query on your screen. If you want to logfile to save query then you can send 2nd param as true. By default it’s false.
 
 Example:
-$db->showQuery(); 
 
-Raw Query Example: 
-SELECT COUNT(*) AS numrows FROM `test`;
+<pre>
+	<code>
+		$db->showQuery(); 
+
+		Raw Query Example: 
+		SELECT COUNT(*) AS numrows FROM `test`;
+	</code>
+</pre>
 
 
-getLastInsertId():
+<h4>getLastInsertId():</h4>
+
 Method name and parameter
-getLastInsertId ()
+<pre><code>getLastInsertId()</code></pre>
+
 
 Explanations:
 Get a newly inserted id by insert function.
 
 Example:
-$lid = $db-> getLastInsertId(); 
+
+<pre>
+	<code>
+		$lid = $db->getLastInsertId(); 
+	</code>
+</pre>
 
 Return: 
 Number/Integer
-getAllLastInsertId():
+
+
+<h4>getAllLastInsertId():</h4>
+
 Method name and parameter
-getAllLastInsertId ()
+<pre><code>getAllLastInsertId ()</code></pre>
+
 
 Explanations:
 Get all newly inserted id by insertBatch function.
 
 Example:
-$lid = $db-> getAllLastInsertId(); 
+
+<pre>
+	<code>
+		$lid = $db->getAllLastInsertId(); 
+	</code>
+</pre>
 
 Return: 
 Array
 
 
-results():
+<h4>results():</h4>
+
 Method name and parameter
-results (string $type )
+<pre><code>results (string $type )</code></pre>
+
 
 Explanations:
 Get array result data by executed SELECT or Select Query. You can get result in three formats
 Array, XML and JSON. Just pass 1st param as ‘array’ or ‘xml’ or ‘json’. By default it will return array.
 
 Example:
-$data = $db-> results(); 
+
+<pre>
+	<code>
+		$data = $db->results(); 
+
+		$data = $db->results('xml'); 
+
+		$data = $db->results('json'); 
+	</code>
+</pre>
 
 Return: 
 Array | XML | JSON
+
  
-result():
+<h4>result():</h4>
+
 Method name and parameter
-results (integer $iRow)
+<pre><code>results (integer $iRow)</code></pre>
 
 Explanations:
 Get result from an array data by request index or false.
 
 Example:
-$data = $db-> result(1); 
+
+<pre>
+	<code>
+		$data = $db->result(1); 
+	</code>
+</pre>
 
 Return: 
 Array | false
 
-affectedRows():
+
+<h4>affectedRows():</h4>
+
 Method name and parameter
-affectedRows ()
+<pre><code>affectedRows()</code></pre>
 
 Explanations:
 Get number of affected rows by update, delete and select etc. statement or false.
 
 Example:
-$data = $db-> affectedRows(); 
+
+<pre>
+	<code>
+		$data = $db->affectedRows(); 
+	</code>
+</pre>
 
 Return: 
 integer | false
 
-start():
+
+<h4>start():</h4>
+
 Method name and parameter
-start ()
+<pre><code>start()</code></pre>
 
 Explanations:
 Start the MySQL transaction.
 
 Example:
-$db-> start(); 
 
+<pre>
+	<code>
+		$db->start();
+	</code>
+</pre>
  
-end():
+
+ <h4>end():</h4>
+ 
 Method name and parameter
-end ()
+<pre><code>end()</code></pre>
 
 Explanations:
 Commit the MySQL transaction.
 
 Example:
-$db-> end(); 
+
+<pre>
+	<code>
+		$db->end();
+	</code>
+</pre>
 
 
-back():
+
+</h4>back():</h4>
+
 Method name and parameter
-back ()
+<pre><code>back()</code></pre>
 
 Explanations:
 Rollback the MySQL transaction.
 
 Example:
-$db-> back();
+
+<pre>
+	<code>
+		$db->back();
+	</code>
+</pre>
 
 
-setErrorLog():
+
+<h4>setErrorLog():</h4>
+
 Method name and parameter
-setErrorLog (boolean $mode)
+<pre><code>setErrorLog (boolean $mode)</code></pre>
 
 Explanations:
 setErrorLog, method works for show/hide PDO error. If you send true then all errors will show on screen or if you send false then all errors will store in log file in same location.
+
 Example:
-$db-> setErrorLog(true);
+
+<pre>
+	<code>
+		$db->setErrorLog(true);
+	</code>
+</pre>
+
 
  
-Example Connection Page:
+<h4>Example Connection Page:</h4>
+<pre>
+	<code>
+		<?php 
 
-<?php 
+		// include PDO Class Wrapper 
+		include_once 'class/class.pdowrapper.php'; 
 
-// include PDO Class Wrapper 
-include_once 'class/class.pdowrapper.php'; 
+		// set connection data 
+		$dbConfig = array
+		(
+		 "host"=>"localhost", "dbname"=>'sampledb', "username"=>'root', "password"=>''
+		); 
 
-// set connection data 
-$dbConfig = array
-(
- "host"=>"localhost", "dbname"=>'sampledb', "username"=>'root', "password"=>''
-); 
+		// get instance of PDO Class Wrapper 
+		$db = PdoWrapper::getPDO($dbConfig); 
 
-// get instance of PDO Class Wrapper 
-$db = PdoWrapper::getPDO($dbConfig); 
+		// set error log mode true to show all error on screen 
+		$db->setErrorLog(true); 
 
-// set error log mode true to show all error on screen 
-$db->setErrorLog(true); 
+		/* simple update example */
 
-/* simple update example */
+		// update array data 
+		$dataArray = array('first_name'=>'Sangeeta','last_name'=>'Mishra','age'=>35); 
 
-// update array data 
-$dataArray = array('first_name'=>'Sangeeta','last_name'=>'Mishra','age'=>35); 
+		// where condition array 
+		$aWhere = array('id'=>23); 
 
-// where condition array 
-$aWhere = array('id'=>23); 
+		// call update function 
+		$q = $p->update('test', $dataArray, $aWhere)->showQuery()->affectedRows(); 
 
-// call update function 
-$q = $p->update('test', $dataArray, $aWhere)->showQuery()->affectedRows(); 
+		?>
 
-?>
+		Output:
 
-Output:
+		UPDATE `test` SET first_name = "sangeeta", last_name = "mishra", age = 35 WHERE id = 23 ;
+			
+		1
 
-UPDATE `test` SET first_name = "sangeeta", last_name = "mishra", age = 35 WHERE id = 23 ;
-	
-1
-
-
+	</code>
+</pre>
 
 
 
 
 Cheers!!
-Priyadarshan Salkar | priyadarshan.salkar@lbi.co.in
-Bhaskar Rabha  |bhaskar.rabha@lbi.co.in
-Neeraj Singh | neeraj.singh@lbi.co.in
-[Document End]
+<br />
+Priyadarshan Salkar | priyadarshan.salkar[at]lbi.co.in
+Bhaskar Rabha  |bhaskar.rabha[at]lbi.co.in
+Neeraj Singh | neeraj.singh[at]lbi.co.in
+
+
+<h6>[Document End]</h6>
