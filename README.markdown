@@ -577,11 +577,11 @@ UPDATE `test` SET first_name = "sangeeta", last_name = "mishra", age = 35 WHERE 
 
 Cheers!!
 <br />
-Priyadarshan Salkar | priyadarshan.salkar[at]lbi.co.in
+Priyadarshan Salkar | priyadarshan[dot]salkar[at]lbi[dot]co[dot]in
 <br />
-Bhaskar Rabha  |bhaskar.rabha[at]lbi.co.in
+Bhaskar Rabha  |bhaskar[dot]rabha[at]lbi[dot]co[dot]in
 <br />
-Neeraj Singh | neeraj.singh[at]lbi.co.in
+Neeraj Singh | neeraj[dot]singh[at]lbi[dot]co[dot]in
 
 
 <h6>[Document End]</h6>
