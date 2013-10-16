@@ -76,18 +76,18 @@ PDO Class Wrapper has very classic methods like any database class library:
 
 <pre>
 	<code>		
-		<h6>Example: [A]</h6>		
-		$dbConfig = array
-		(
-		 "host"=>"localhost", "dbname"=>mydb, "username"=>'root', "password"=>''
-		); 
-		$db = new PdoWrapper($dbConfig);		
-		<h6>Example: [B]</h6>		
-		$dbConfig = array
-		(
-		 "host"=>"localhost", "dbname"=>mydb, "username"=>'root', "password"=>''
-		); 
-		$db = PdoWrapper::getPDO($dbConfig);		
+	<h6>Example: [A]</h6>		
+	$dbConfig = array
+	(
+	 "host"=>"localhost", "dbname"=>mydb, "username"=>'root', "password"=>''
+	); 
+	$db = new PdoWrapper($dbConfig);		
+	<h6>Example: [B]</h6>		
+	$dbConfig = array
+	(
+	 "host"=>"localhost", "dbname"=>mydb, "username"=>'root', "password"=>''
+	); 
+	$db = PdoWrapper::getPDO($dbConfig);		
 	</code> 
 </pre>
 
@@ -106,36 +106,36 @@ Example:
 
 <pre>
 	</code>
-		$sql = 'select * from customers limit 5;'; 
-		$data = $pdo->pdoQuery($sql)->results(); 
+	$sql = 'select * from customers limit 5;'; 
+	$data = $pdo->pdoQuery($sql)->results(); 
 
-		Raw Query: 
-		SELECT * FROM customers LIMIT 5;
+	Raw Query: 
+	SELECT * FROM customers LIMIT 5;
 
-		$sql = "select * from customers where (customernumber = '0000' OR customernumber = '45121') ;"; 
-		$data = $pdo->pdoQuery($sql)->results();  
+	$sql = "select * from customers where (customernumber = '0000' OR customernumber = '45121') ;"; 
+	$data = $pdo->pdoQuery($sql)->results();  
 
-		Raw Query: 
-		SELECT * FROM customers WHERE (customernumber = 103 OR customernumber = 119) ;
+	Raw Query: 
+	SELECT * FROM customers WHERE (customernumber = 103 OR customernumber = 119) ;
 
-		$sql = "select * from customers where (customernumber = '0000' OR customernumber = '45121') ;"; 
-		$data = $db->pdoQuery($sql)->results(); 
+	$sql = "select * from customers where (customernumber = '0000' OR customernumber = '45121') ;"; 
+	$data = $db->pdoQuery($sql)->results(); 
 
-		Raw Query: 
-		SELECT * FROM customers WHERE (customernumber = '0000' OR customernumber = '45121') ;
+	Raw Query: 
+	SELECT * FROM customers WHERE (customernumber = '0000' OR customernumber = '45121') ;
 
-		$sql = "select p.checknumber, p.amount, p.paymentdate, c.customernumber, 
-		c.customerName, c.contactLastName, c.contactFirstName, c.phone, c.addressLine1, 
-		c.addressLine2, c.city, c.state, c.postalCode, c.country from payments as p 
-		inner join customers as c on p.customernumber = c.customernumber 
-		order by p.amount desc limit 2;";
-		$data = $pdo->pdoQuery($sql)->results(); 
-		 
-		Raw Query: 
-		SELECT p.checknumber, p.amount, p.paymentdate, c.customernumber, c.customername, 
-		c.contactlastname, c.contactfirstname, c.phone, c.addressline1, c.addressline2, 
-		c.city, c.state, c.postalcode, c.country FROM payments AS p INNER JOIN 
-		customers AS c ON p.customernumber = c.customernumber ORDER BY p.amount DESC LIMIT 2;
+	$sql = "select p.checknumber, p.amount, p.paymentdate, c.customernumber, 
+	c.customerName, c.contactLastName, c.contactFirstName, c.phone, c.addressLine1, 
+	c.addressLine2, c.city, c.state, c.postalCode, c.country from payments as p 
+	inner join customers as c on p.customernumber = c.customernumber 
+	order by p.amount desc limit 2;";
+	$data = $pdo->pdoQuery($sql)->results(); 
+	 
+	Raw Query: 
+	SELECT p.checknumber, p.amount, p.paymentdate, c.customernumber, c.customername, 
+	c.contactlastname, c.contactfirstname, c.phone, c.addressline1, c.addressline2, 
+	c.city, c.state, c.postalcode, c.country FROM payments AS p INNER JOIN 
+	customers AS c ON p.customernumber = c.customernumber ORDER BY p.amount DESC LIMIT 2;
 	</code>
 </pre>
 
@@ -152,62 +152,62 @@ Example:
 	
 <pre>
 	</code>
-		Get all table fields from table without passing 2nd parameter.
-		$select = $pdo->select('customers'); 
-		$data = $select->results();
+	Get all table fields from table without passing 2nd parameter.
+	$select = $pdo->select('customers'); 
+	$data = $select->results();
 
-		Raw Query: 
-		SELECT * FROM `customers` ;
+	Raw Query: 
+	SELECT * FROM `customers` ;
 
-		Or
+	Or
 
-		You can use one line code to get a result array
-		$data = $pdo->select('employees')->results(); 
-
-
-		Raw Query: 
-		SELECT * FROM `employees` ;
-
-		Get only selected fields from table
-
-		$data = $db->select('employees', array('employeeNumber','lastName','firstName'))->results(); 
-
-		Raw Query: 
-		SELECT employeenumber, lastname, firstname FROM `employees` ;
-
-		Or
-
-		$fieldsArray = array('employeeNumber','lastName','firstName');
-		$data = $db->select('employees', $fieldsArray)->results(); 
-
-		Raw Query: 
-		SELECT employeenumber, lastname, firstname FROM `employees` ;
-
-		$selectFields = array('employeeNumber','lastName','firstName'); 
-		$whereConditions = array('lastname'=>'bow'); 
-		$data = $db->select('employees', $selectFields, $whereConditions, 'ORDER BY employeeNumber DESC LIMIT 5')->results(); 
-
-		Raw Query: 
-		SELECT employeenumber, lastname, firstname FROM `employees` WHERE lastname = "bow" ORDER BY employeenumber DESC LIMIT 5;
+	You can use one line code to get a result array
+	$data = $pdo->select('employees')->results(); 
 
 
-		Custom Where Clause with Select Method:
-		You can set your own custom where clause
+	Raw Query: 
+	SELECT * FROM `employees` ;
 
-		$whereConditions = array('lastname ='=>'bow', 'or jobtitle ='=> 'Sales Rep', 'and isactive ='=>1, 'and officecode ='=> 1 ); 
-		$data = $db->select('employees','',$whereConditions)->results(); 
+	Get only selected fields from table
 
-		Raw Query: 
-		SELECT * FROM `employees` WHERE lastname = "bow" OR jobtitle = "sales rep" AND isactive = 1 AND officecode = 1 ;
+	$data = $db->select('employees', array('employeeNumber','lastName','firstName'))->results(); 
 
-		OR
+	Raw Query: 
+	SELECT employeenumber, lastname, firstname FROM `employees` ;
 
-		$whereConditions = array('lastname ='=>'bow', 'or jobtitle ='=> 'Sales Rep', 'and isactive ='=>1, 'and officecode ='=> 1 ); 
-		$data = $db->select('employees',array('employeenumber','lastname','jobtitle'),$whereConditions)->results();  
+	Or
+
+	$fieldsArray = array('employeeNumber','lastName','firstName');
+	$data = $db->select('employees', $fieldsArray)->results(); 
+
+	Raw Query: 
+	SELECT employeenumber, lastname, firstname FROM `employees` ;
+
+	$selectFields = array('employeeNumber','lastName','firstName'); 
+	$whereConditions = array('lastname'=>'bow'); 
+	$data = $db->select('employees', $selectFields, $whereConditions, 'ORDER BY employeeNumber DESC LIMIT 5')->results(); 
+
+	Raw Query: 
+	SELECT employeenumber, lastname, firstname FROM `employees` WHERE lastname = "bow" ORDER BY employeenumber DESC LIMIT 5;
 
 
-		Raw Query: 
-		SELECT employeenumber, lastname, jobtitle FROM `employees` WHERE lastname = "bow" OR jobtitle = "sales rep" AND isactive = 1 AND officecode = 1 ;
+	Custom Where Clause with Select Method:
+	You can set your own custom where clause
+
+	$whereConditions = array('lastname ='=>'bow', 'or jobtitle ='=> 'Sales Rep', 'and isactive ='=>1, 'and officecode ='=> 1 ); 
+	$data = $db->select('employees','',$whereConditions)->results(); 
+
+	Raw Query: 
+	SELECT * FROM `employees` WHERE lastname = "bow" OR jobtitle = "sales rep" AND isactive = 1 AND officecode = 1 ;
+
+	OR
+
+	$whereConditions = array('lastname ='=>'bow', 'or jobtitle ='=> 'Sales Rep', 'and isactive ='=>1, 'and officecode ='=> 1 ); 
+	$data = $db->select('employees',array('employeenumber','lastname','jobtitle'),$whereConditions)->results();  
+
+
+	Raw Query: 
+	SELECT employeenumber, lastname, jobtitle FROM `employees` WHERE lastname = "bow" OR jobtitle = "sales rep" AND isactive = 1 AND officecode = 1 ;
 	</code>
 </pre>
 
@@ -223,11 +223,11 @@ Example:
 
 <pre>
 	</code>
-		$dataArray = array('first_name'=>'Sid','last_name'=>'Mike','age'=>45); 
-		$data = $db->insert('test',$dataArray)->getLastInsertId(); 
+	$dataArray = array('first_name'=>'Sid','last_name'=>'Mike','age'=>45); 
+	$data = $db->insert('test',$dataArray)->getLastInsertId(); 
 
-		Raw Query: 
-		INSERT INTO `test` (first_name,last_name,age) VALUES ("sid","mike",45);
+	Raw Query: 
+	INSERT INTO `test` (first_name,last_name,age) VALUES ("sid","mike",45);
 	</code>
 </pre>
 
@@ -246,16 +246,16 @@ Example:
 
 <pre>
 	</code>
-		$dataArray[] = array('first_name'=>'Sid','last_name'=>'Mike','age'=>45); 
-		$dataArray[] = array('first_name'=>'Scott','last_name'=>'Dimon','age'=>78);
-		$dataArray[] = array('first_name'=>'Meena','last_name'=>'Verma','age'=>23);
+	$dataArray[] = array('first_name'=>'Sid','last_name'=>'Mike','age'=>45); 
+	$dataArray[] = array('first_name'=>'Scott','last_name'=>'Dimon','age'=>78);
+	$dataArray[] = array('first_name'=>'Meena','last_name'=>'Verma','age'=>23);
 
-		$data = $db->insertBatch('test',$dataArray, true)->getAllLastInsertId(); 
+	$data = $db->insertBatch('test',$dataArray, true)->getAllLastInsertId(); 
 
-		Raw Query: 
-		INSERT INTO `test` (first_name, last_name, age) VALUES ("sid", "mike", 45);
-		INSERT INTO `test` (first_name, last_name, age) VALUES ("scott", "dimon", 78);
-		INSERT INTO `test` (first_name, last_name, age) VALUES ("meena", "verma", 23);
+	Raw Query: 
+	INSERT INTO `test` (first_name, last_name, age) VALUES ("sid", "mike", 45);
+	INSERT INTO `test` (first_name, last_name, age) VALUES ("scott", "dimon", 78);
+	INSERT INTO `test` (first_name, last_name, age) VALUES ("meena", "verma", 23);
 	</code>
 </pre>
 
@@ -271,21 +271,21 @@ Example:
  
 <pre>
 	</code>
-		$dataArray = array('first_name'=>'Sangeeta','last_name'=>'Mishra','age'=>35); 
-		$aWhere = array('id'=>23); 
-		$data = $db->update('test', $dataArray, $aWhere->affectedRows();
+	$dataArray = array('first_name'=>'Sangeeta','last_name'=>'Mishra','age'=>35); 
+	$aWhere = array('id'=>23); 
+	$data = $db->update('test', $dataArray, $aWhere->affectedRows();
 
-		Raw Query: 
-		UPDATE `test` SET first_name = "sangeeta", last_name = "mishra", age = 35 WHERE id = 23 ;
+	Raw Query: 
+	UPDATE `test` SET first_name = "sangeeta", last_name = "mishra", age = 35 WHERE id = 23 ;
 
-		Or
+	Or
 
-		$dataArray = array('first_name'=>'Sonia','last_name'=>'Shukla','age'=>23); 
-		$aWhere = array('age'=>35, 'last_name'=>'Mishra'); 
-		$data = $db->update('test', $dataArray, $aWhere)->affectedRows(); 
+	$dataArray = array('first_name'=>'Sonia','last_name'=>'Shukla','age'=>23); 
+	$aWhere = array('age'=>35, 'last_name'=>'Mishra'); 
+	$data = $db->update('test', $dataArray, $aWhere)->affectedRows(); 
 
-		Raw Query: 
-		UPDATE `test` SET first_name = "sonia", last_name = "shukla", age = 23 WHERE age = 35 AND last_name = "mishra" ;
+	Raw Query: 
+	UPDATE `test` SET first_name = "sonia", last_name = "shukla", age = 23 WHERE age = 35 AND last_name = "mishra" ;
 	</code>
 </pre>
 
@@ -302,17 +302,17 @@ Example:
 
 <pre>
 	</code>
-		$aWhere = array('age'=>35); 
-		$data = $db->delete('test', $aWhere)->affectedRows(); 
+	$aWhere = array('age'=>35); 
+	$data = $db->delete('test', $aWhere)->affectedRows(); 
 
-		Raw Query: 
-		DELETE FROM `test` WHERE age = 35 ;
+	Raw Query: 
+	DELETE FROM `test` WHERE age = 35 ;
 
-		$aWhere = array('age'=>45, 'first_name'=> 'Sonu'); 
-		$data = $db->delete('test', $aWhere)->affectedRows(); 
+	$aWhere = array('age'=>45, 'first_name'=> 'Sonu'); 
+	$data = $db->delete('test', $aWhere)->affectedRows(); 
 
-		Raw Query: 
-		DELETE FROM `test` WHERE age = 45 AND first_name = "sonu" ;
+	Raw Query: 
+	DELETE FROM `test` WHERE age = 45 AND first_name = "sonu" ;
 	</code>
 </pre>
 
@@ -329,10 +329,10 @@ Example:
 
 <pre>
 	<code>
-		$data = $db->truncate('test'); 
-		
-		Raw Query: 
-		TRUNCATE TABLE `test`;
+	$data = $db->truncate('test'); 
+	
+	Raw Query: 
+	TRUNCATE TABLE `test`;
 	</code>
 </pre>	
 
@@ -349,10 +349,10 @@ Example:
 
 <pre>
 	<code>
-		$data = $db->drop('test'); 
+	$data = $db->drop('test'); 
 
-		Raw Query: 
-		DROP TABLE `test`;
+	Raw Query: 
+	DROP TABLE `test`;
 	</code>
 </pre>
 
@@ -369,10 +369,10 @@ Example:
 
 <pre>
 	<code>
-		$data = $db->describe('test'); 
+	$data = $db->describe('test'); 
 
-		Raw Query: 
-		DESC  `test`;
+	Raw Query: 
+	DESC  `test`;
 	</code>
 </pre>
 
@@ -389,10 +389,10 @@ Example:
 
 <pre>
 	<code>
-		$data = $db->count('test'); 
+	$data = $db->count('test'); 
 
-		Raw Query: 
-		SELECT COUNT(*) AS numrows FROM `test`;
+	Raw Query: 
+	SELECT COUNT(*) AS numrows FROM `test`;
 	</code>
 </pre>
 
@@ -410,10 +410,10 @@ Example:
 
 <pre>
 	<code>
-		$db->showQuery(); 
+	$db->showQuery(); 
 
-		Raw Query Example: 
-		SELECT COUNT(*) AS numrows FROM `test`;
+	Raw Query Example: 
+	SELECT COUNT(*) AS numrows FROM `test`;
 	</code>
 </pre>
 
@@ -431,7 +431,7 @@ Example:
 
 <pre>
 	<code>
-		$lid = $db->getLastInsertId(); 
+	$lid = $db->getLastInsertId(); 
 	</code>
 </pre>
 
@@ -452,7 +452,7 @@ Example:
 
 <pre>
 	<code>
-		$lid = $db->getAllLastInsertId(); 
+	$lid = $db->getAllLastInsertId(); 
 	</code>
 </pre>
 
@@ -474,11 +474,11 @@ Example:
 
 <pre>
 	<code>
-		$data = $db->results(); 
+	$data = $db->results(); 
 
-		$data = $db->results('xml'); 
+	$data = $db->results('xml'); 
 
-		$data = $db->results('json'); 
+	$data = $db->results('json'); 
 	</code>
 </pre>
 
@@ -498,7 +498,7 @@ Example:
 
 <pre>
 	<code>
-		$data = $db->result(1); 
+	$data = $db->result(1); 
 	</code>
 </pre>
 
@@ -518,7 +518,7 @@ Example:
 
 <pre>
 	<code>
-		$data = $db->affectedRows(); 
+	$data = $db->affectedRows(); 
 	</code>
 </pre>
 
@@ -538,7 +538,7 @@ Example:
 
 <pre>
 	<code>
-		$db->start();
+	$db->start();
 	</code>
 </pre>
  
@@ -555,7 +555,7 @@ Example:
 
 <pre>
 	<code>
-		$db->end();
+	$db->end();
 	</code>
 </pre>
 
@@ -573,7 +573,7 @@ Example:
 
 <pre>
 	<code>
-		$db->back();
+	$db->back();
 	</code>
 </pre>
 
@@ -591,7 +591,7 @@ Example:
 
 <pre>
 	<code>
-		$db->setErrorLog(true);
+	$db->setErrorLog(true);
 	</code>
 </pre>
 
@@ -600,41 +600,41 @@ Example:
 <h4>Example Connection Page:</h4>
 <pre>
 	<code>
-		<?php 
+	<?php 
 
-		// include PDO Class Wrapper 
-		include_once 'class/class.pdowrapper.php'; 
+	// include PDO Class Wrapper 
+	include_once 'class/class.pdowrapper.php'; 
 
-		// set connection data 
-		$dbConfig = array
-		(
-		 "host"=>"localhost", "dbname"=>'sampledb', "username"=>'root', "password"=>''
-		); 
+	// set connection data 
+	$dbConfig = array
+	(
+	 "host"=>"localhost", "dbname"=>'sampledb', "username"=>'root', "password"=>''
+	); 
 
-		// get instance of PDO Class Wrapper 
-		$db = PdoWrapper::getPDO($dbConfig); 
+	// get instance of PDO Class Wrapper 
+	$db = PdoWrapper::getPDO($dbConfig); 
 
-		// set error log mode true to show all error on screen 
-		$db->setErrorLog(true); 
+	// set error log mode true to show all error on screen 
+	$db->setErrorLog(true); 
 
-		/* simple update example */
+	/* simple update example */
 
-		// update array data 
-		$dataArray = array('first_name'=>'Sangeeta','last_name'=>'Mishra','age'=>35); 
+	// update array data 
+	$dataArray = array('first_name'=>'Sangeeta','last_name'=>'Mishra','age'=>35); 
 
-		// where condition array 
-		$aWhere = array('id'=>23); 
+	// where condition array 
+	$aWhere = array('id'=>23); 
 
-		// call update function 
-		$q = $p->update('test', $dataArray, $aWhere)->showQuery()->affectedRows(); 
+	// call update function 
+	$q = $p->update('test', $dataArray, $aWhere)->showQuery()->affectedRows(); 
 
-		?>
+	?>
 
-		Output:
+	Output:
 
-		UPDATE `test` SET first_name = "sangeeta", last_name = "mishra", age = 35 WHERE id = 23 ;
-			
-		1
+	UPDATE `test` SET first_name = "sangeeta", last_name = "mishra", age = 35 WHERE id = 23 ;
+		
+	1
 
 	</code>
 </pre>
