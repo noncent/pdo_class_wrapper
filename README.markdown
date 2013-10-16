@@ -1,4 +1,4 @@
-PHP PDO Class Wrapper 
+<h2>PHP PDO Class Wrapper</h2>
 [A Wrapper Class of PDO]
 Version 1.2 (Beta)
 
