@@ -29,7 +29,7 @@ The PDO MYSQL driver is implemented using the PHP extension framework. Its sourc
 <br />
 Comparison of MySQL API options for PHP
 
-![Alt text](comparison.jpg "PDO Comparison")
+![PDO Comparison](https://raw.github.com/neerajsinghsonu/PDO_Class_Wrapper/master/comparison.jpg "PDO Comparison")
 
 About PDO Class Wrapper:
 PDO Class Wrapper is a wrapper class of PDO (PHP Data Object) library. It has many useful built in functions to manage your web application database code very shorter. Also you will find some helpful method to fix your bug with very ease.
