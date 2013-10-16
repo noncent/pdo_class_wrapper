@@ -271,7 +271,8 @@ $aWhere = array('age'=>35, 'last_name'=>'Mishra');
 $data = $db->update('test', $dataArray, $aWhere)->affectedRows(); 
 
 Raw Query: 
-UPDATE `test` SET first_name = "sonia", last_name = "shukla", age = 23 WHERE age = 35 AND last_name = "mishra" ;
+UPDATE `test` SET first_name = "sonia", last_name = "shukla", age = 23 WHERE 
+age = 35 AND last_name = "mishra" ;
 </code></pre> 
 
 <h4>delete():</h4>
