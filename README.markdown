@@ -18,8 +18,8 @@ PDO Class Wrapper is a wrapper class of PDO (PHP Data Object) library.  As we kn
 
 [source: php.net]
 <br />
-What is the PDO MYSQL driver?
 
+<h5>What is the PDO MYSQL driver?</h5>
 The PDO MYSQL driver is not an API as such, at least from the PHP programmer's perspective. In fact the PDO MYSQL driver sits in the layer below PDO itself and provides MySQL-specific functionality. The programmer still calls the PDO API, but PDO uses the PDO MYSQL driver to carry out communication with the MySQL server.
 The PDO MYSQL driver is one of several available PDO drivers. Other PDO drivers available include those for the Firebird and PostgreSQL database servers.
 
@@ -27,21 +27,25 @@ The PDO MYSQL driver is implemented using the PHP extension framework. Its sourc
 
 [source: php.net]
 <br />
-Comparison of MySQL API options for PHP
+
+<h5>Comparison of MySQL API options for PHP</h5>
 
 ![PDO Comparison](https://raw.github.com/neerajsinghsonu/PDO_Class_Wrapper/master/comparison.jpg "PDO Comparison")
 
 About PDO Class Wrapper:
 PDO Class Wrapper is a wrapper class of PDO (PHP Data Object) library. It has many useful built in functions to manage your web application database code very shorter. Also you will find some helpful method to fix your bug with very ease.
 
-Net Tut+
-Advantage of using PDO:
+[source: Net Tut+]
+<br />
+
+<h5>Advantage of using PDO:</h5>
 Many PHP programmers learned how to access databases by using either the MySQL or MySQLi extensions. As of PHP 5.1, there’s a better way. PHP Data Objects (PDO) provides methods for prepared statements and working with objects that will make you far more productive!
 
 
 
 
-PDO Class Wrapper Features:
+<h5>PDO Class Wrapper Features:</h5>
+
 PDO Class Wrapper has very classic methods like any database class library:
 <pre>
 	<ol>
@@ -68,125 +72,143 @@ PDO Class Wrapper has very classic methods like any database class library:
 	</ol>
 </pre>
 
-<h4>How to Connect PDO Class:</h4>
+<h5>How to Connect PDO Class:</h5>
+
 <pre>
 	<code>
-		Example: [A]
+		
+		<h6>Example: [A]</h6>
+		
 		$dbConfig = array
 		(
 		 "host"=>"localhost", "dbname"=>mydb, "username"=>'root', "password"=>''
 		); 
-		$db = new PdoWrapper($dbConfig); 
-		Example: [B]
+		$db = new PdoWrapper($dbConfig);
+		
+		<h6>Example: [B]</h6>
+		
 		$dbConfig = array
 		(
 		 "host"=>"localhost", "dbname"=>mydb, "username"=>'root', "password"=>''
 		); 
 		$db = PdoWrapper::getPDO($dbConfig);
+		
 	</code> 
 </pre>
-PDO Class Wrapper Methods Explanations:
 
-pdoQuery():
+<h4>PDO Class Wrapper Methods Explanations:</h4>
+
+<h5>pdoQuery():</h5>
+
 Method name and parameter
+
 pdoQuery ( string $sSql, array $aBindWhereParam)
 
 Explanations:
 This method is use for simple MySQL query; you can execute your MySQL query with parameterized parameter or as simple query.
 
-Example:	
-$sql = 'select * from customers limit 5;'; 
-$data = $pdo->pdoQuery($sql)->results(); 
+Example:
 
-Raw Query: 
-SELECT * FROM customers LIMIT 5;
+<pre>
+	</code>
+		$sql = 'select * from customers limit 5;'; 
+		$data = $pdo->pdoQuery($sql)->results(); 
 
-$sql = "select * from customers where (customernumber = '0000' OR customernumber = '45121') ;"; 
-$data = $pdo->pdoQuery($sql)->results();  
+		Raw Query: 
+		SELECT * FROM customers LIMIT 5;
 
-Raw Query: 
-SELECT * FROM customers WHERE (customernumber = 103 OR customernumber = 119) ;
+		$sql = "select * from customers where (customernumber = '0000' OR customernumber = '45121') ;"; 
+		$data = $pdo->pdoQuery($sql)->results();  
 
-$sql = "select * from customers where (customernumber = '0000' OR customernumber = '45121') ;"; 
-$data = $db->pdoQuery($sql)->results(); 
+		Raw Query: 
+		SELECT * FROM customers WHERE (customernumber = 103 OR customernumber = 119) ;
 
-Raw Query: 
-SELECT * FROM customers WHERE (customernumber = '0000' OR customernumber = '45121') ;
+		$sql = "select * from customers where (customernumber = '0000' OR customernumber = '45121') ;"; 
+		$data = $db->pdoQuery($sql)->results(); 
 
-$sql = "select p.checknumber, p.amount, p.paymentdate, c.customernumber, c.customerName, c.contactLastName, c.contactFirstName, c.phone, c.addressLine1, c.addressLine2, c.city, c.state, c.postalCode, c.country from payments as p inner join customers as c on p.customernumber = c.customernumber order by p.amount desc limit 2;";
-$data = $pdo->pdoQuery($sql)->results(); 
+		Raw Query: 
+		SELECT * FROM customers WHERE (customernumber = '0000' OR customernumber = '45121') ;
 
- 
-Raw Query: 
-SELECT p.checknumber, p.amount, p.paymentdate, c.customernumber, c.customername, c.contactlastname, c.contactfirstname, c.phone, c.addressline1, c.addressline2, c.city, c.state, c.postalcode, c.country FROM payments AS p INNER JOIN customers AS c ON p.customernumber = c.customernumber ORDER BY p.amount DESC LIMIT 2;
+		$sql = "select p.checknumber, p.amount, p.paymentdate, c.customernumber, c.customerName, c.contactLastName, c.contactFirstName, c.phone, c.addressLine1, c.addressLine2, c.city, c.state, c.postalCode, c.country from payments as p inner join customers as c on p.customernumber = c.customernumber order by p.amount desc limit 2;";
+		$data = $pdo->pdoQuery($sql)->results(); 
+		 
+		Raw Query: 
+		SELECT p.checknumber, p.amount, p.paymentdate, c.customernumber, c.customername, c.contactlastname, c.contactfirstname, c.phone, c.addressline1, c.addressline2, c.city, c.state, c.postalcode, c.country FROM payments AS p INNER JOIN customers AS c ON p.customernumber = c.customernumber ORDER BY p.amount DESC LIMIT 2;
+	</code>
+</pre>
 
-select():
+
+<h4>select():</h4>
+
 Method name and parameter
 select (string $sTable , array $aColumn, array $aWhere, string $sOther)	
 
 Explanations:
+
 The select method is made for get table data from just pass table name in method, if you omit column then you will get all fields of requested table else you can pass table field by an array. If you want to pass a where clause then you can use third parameter of select method and by pass fourth parameter you can send other filters.
 
-Example:	
- Get all table fields from table without passing 2nd parameter.
-$select = $pdo->select('customers'); 
-$data = $select->results();
+Example:
+	
+<pre>
+	</code>
+		Get all table fields from table without passing 2nd parameter.
+		$select = $pdo->select('customers'); 
+		$data = $select->results();
 
-Raw Query: 
-SELECT * FROM `customers` ;
+		Raw Query: 
+		SELECT * FROM `customers` ;
 
-Or
+		Or
 
-You can use one line code to get a result array
-$data = $pdo->select('employees')->results(); 
-
-
-Raw Query: 
-SELECT * FROM `employees` ;
-
-
-Get only selected fields from table
-
-$data = $db->select('employees', array('employeeNumber','lastName','firstName'))->results(); 
-
-Raw Query: 
-SELECT employeenumber, lastname, firstname FROM `employees` ;
-
-Or
-
-$fieldsArray = array('employeeNumber','lastName','firstName');
-$data = $db->select('employees', $fieldsArray)->results(); 
-
-Raw Query: 
-SELECT employeenumber, lastname, firstname FROM `employees` ;
-
-$selectFields = array('employeeNumber','lastName','firstName'); 
-$whereConditions = array('lastname'=>'bow'); 
-$data = $db->select('employees', $selectFields, $whereConditions, 'ORDER BY employeeNumber DESC LIMIT 5')->results(); 
-
-Raw Query: 
-SELECT employeenumber, lastname, firstname FROM `employees` WHERE lastname = "bow" ORDER BY employeenumber DESC LIMIT 5;
+		You can use one line code to get a result array
+		$data = $pdo->select('employees')->results(); 
 
 
-Custom Where Clause with Select Method:
-You can set your own custom where clause
+		Raw Query: 
+		SELECT * FROM `employees` ;
 
-$whereConditions = array('lastname ='=>'bow', 'or jobtitle ='=> 'Sales Rep', 'and isactive ='=>1, 'and officecode ='=> 1 ); 
-$data = $db->select('employees','',$whereConditions)->results(); 
+		Get only selected fields from table
 
-Raw Query: 
-SELECT * FROM `employees` WHERE lastname = "bow" OR jobtitle = "sales rep" AND isactive = 1 AND officecode = 1 ;
+		$data = $db->select('employees', array('employeeNumber','lastName','firstName'))->results(); 
 
-OR
+		Raw Query: 
+		SELECT employeenumber, lastname, firstname FROM `employees` ;
 
-$whereConditions = array('lastname ='=>'bow', 'or jobtitle ='=> 'Sales Rep', 'and isactive ='=>1, 'and officecode ='=> 1 ); 
-$data = $db->select('employees',array('employeenumber','lastname','jobtitle'),$whereConditions)->results();  
+		Or
+
+		$fieldsArray = array('employeeNumber','lastName','firstName');
+		$data = $db->select('employees', $fieldsArray)->results(); 
+
+		Raw Query: 
+		SELECT employeenumber, lastname, firstname FROM `employees` ;
+
+		$selectFields = array('employeeNumber','lastName','firstName'); 
+		$whereConditions = array('lastname'=>'bow'); 
+		$data = $db->select('employees', $selectFields, $whereConditions, 'ORDER BY employeeNumber DESC LIMIT 5')->results(); 
+
+		Raw Query: 
+		SELECT employeenumber, lastname, firstname FROM `employees` WHERE lastname = "bow" ORDER BY employeenumber DESC LIMIT 5;
 
 
-Raw Query: 
-SELECT employeenumber, lastname, jobtitle FROM `employees` WHERE lastname = "bow" OR jobtitle = "sales rep" AND isactive = 1 AND officecode = 1 ;
+		Custom Where Clause with Select Method:
+		You can set your own custom where clause
+
+		$whereConditions = array('lastname ='=>'bow', 'or jobtitle ='=> 'Sales Rep', 'and isactive ='=>1, 'and officecode ='=> 1 ); 
+		$data = $db->select('employees','',$whereConditions)->results(); 
+
+		Raw Query: 
+		SELECT * FROM `employees` WHERE lastname = "bow" OR jobtitle = "sales rep" AND isactive = 1 AND officecode = 1 ;
+
+		OR
+
+		$whereConditions = array('lastname ='=>'bow', 'or jobtitle ='=> 'Sales Rep', 'and isactive ='=>1, 'and officecode ='=> 1 ); 
+		$data = $db->select('employees',array('employeenumber','lastname','jobtitle'),$whereConditions)->results();  
 
 
+		Raw Query: 
+		SELECT employeenumber, lastname, jobtitle FROM `employees` WHERE lastname = "bow" OR jobtitle = "sales rep" AND isactive = 1 AND officecode = 1 ;
+	</code>
+</pre>
 
 insert():
 Method name and parameter
