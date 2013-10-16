@@ -75,24 +75,19 @@ PDO Class Wrapper has very classic methods like any database class library:
 <h5>How to Connect PDO Class:</h5>
 
 <pre>
-	<code>
-		
-		<h6>Example: [A]</h6>
-		
+	<code>		
+		<h6>Example: [A]</h6>		
 		$dbConfig = array
 		(
 		 "host"=>"localhost", "dbname"=>mydb, "username"=>'root', "password"=>''
 		); 
-		$db = new PdoWrapper($dbConfig);
-		
-		<h6>Example: [B]</h6>
-		
+		$db = new PdoWrapper($dbConfig);		
+		<h6>Example: [B]</h6>		
 		$dbConfig = array
 		(
 		 "host"=>"localhost", "dbname"=>mydb, "username"=>'root', "password"=>''
 		); 
-		$db = PdoWrapper::getPDO($dbConfig);
-		
+		$db = PdoWrapper::getPDO($dbConfig);		
 	</code> 
 </pre>
 
@@ -102,7 +97,7 @@ PDO Class Wrapper has very classic methods like any database class library:
 
 Method name and parameter
 
-pdoQuery ( string $sSql, array $aBindWhereParam)
+<pre><code>pdoQuery ( string $sSql, array $aBindWhereParam)</code></pre>
 
 Explanations:
 This method is use for simple MySQL query; you can execute your MySQL query with parameterized parameter or as simple query.
@@ -129,11 +124,18 @@ Example:
 		Raw Query: 
 		SELECT * FROM customers WHERE (customernumber = '0000' OR customernumber = '45121') ;
 
-		$sql = "select p.checknumber, p.amount, p.paymentdate, c.customernumber, c.customerName, c.contactLastName, c.contactFirstName, c.phone, c.addressLine1, c.addressLine2, c.city, c.state, c.postalCode, c.country from payments as p inner join customers as c on p.customernumber = c.customernumber order by p.amount desc limit 2;";
+		$sql = "select p.checknumber, p.amount, p.paymentdate, c.customernumber, 
+		c.customerName, c.contactLastName, c.contactFirstName, c.phone, c.addressLine1, 
+		c.addressLine2, c.city, c.state, c.postalCode, c.country from payments as p 
+		inner join customers as c on p.customernumber = c.customernumber 
+		order by p.amount desc limit 2;";
 		$data = $pdo->pdoQuery($sql)->results(); 
 		 
 		Raw Query: 
-		SELECT p.checknumber, p.amount, p.paymentdate, c.customernumber, c.customername, c.contactlastname, c.contactfirstname, c.phone, c.addressline1, c.addressline2, c.city, c.state, c.postalcode, c.country FROM payments AS p INNER JOIN customers AS c ON p.customernumber = c.customernumber ORDER BY p.amount DESC LIMIT 2;
+		SELECT p.checknumber, p.amount, p.paymentdate, c.customernumber, c.customername, 
+		c.contactlastname, c.contactfirstname, c.phone, c.addressline1, c.addressline2, 
+		c.city, c.state, c.postalcode, c.country FROM payments AS p INNER JOIN 
+		customers AS c ON p.customernumber = c.customernumber ORDER BY p.amount DESC LIMIT 2;
 	</code>
 </pre>
 
@@ -141,8 +143,7 @@ Example:
 <h4>select():</h4>
 
 Method name and parameter
-select (string $sTable , array $aColumn, array $aWhere, string $sOther)	
-
+<pre><code>select (string $sTable , array $aColumn, array $aWhere, string $sOther)	</code></pre>
 Explanations:
 
 The select method is made for get table data from just pass table name in method, if you omit column then you will get all fields of requested table else you can pass table field by an array. If you want to pass a where clause then you can use third parameter of select method and by pass fourth parameter you can send other filters.
