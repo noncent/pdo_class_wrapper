@@ -42,8 +42,6 @@ PDO Class Wrapper is a wrapper class of PDO (PHP Data Object) library. It has ma
 Many PHP programmers learned how to access databases by using either the MySQL or MySQLi extensions. As of PHP 5.1, there’s a better way. PHP Data Objects (PDO) provides methods for prepared statements and working with objects that will make you far more productive!
 
 
-
-
 <h5>PDO Class Wrapper Features:</h5>
 
 PDO Class Wrapper has very classic methods like any database class library:
@@ -102,7 +100,8 @@ This method is use for simple MySQL query; you can execute your MySQL query with
 
 Example:
 
-<pre></code>$sql = 'select * from customers limit 5;'; 
+<pre></code>
+$sql = 'select * from customers limit 5;'; 
 $data = $pdo->pdoQuery($sql)->results(); 
 
 Raw Query: 
@@ -138,13 +137,15 @@ customers AS c ON p.customernumber = c.customernumber ORDER BY p.amount DESC LIM
 
 Method name and parameter
 <pre><code>select (string $sTable , array $aColumn, array $aWhere, string $sOther)</code></pre>
+
 Explanations:
 
 The select method is made for get table data from just pass table name in method, if you omit column then you will get all fields of requested table else you can pass table field by an array. If you want to pass a where clause then you can use third parameter of select method and by pass fourth parameter you can send other filters.
 
 Example:
 
-<pre></code>Get all table fields from table without passing 2nd parameter.
+<pre></code>
+Get all table fields from table without passing 2nd parameter.
 $select = $pdo->select('customers'); 
 $data = $select->results();
 
@@ -212,7 +213,8 @@ By insert method you can insert record into selected table. Just pass data as an
 
 Example:
 
-<pre></code>$dataArray = array('first_name'=>'Sid','last_name'=>'Mike','age'=>45); 
+<pre></code>
+$dataArray = array('first_name'=>'Sid','last_name'=>'Mike','age'=>45); 
 $data = $db->insert('test',$dataArray)->getLastInsertId(); 
 
 Raw Query: 
@@ -231,7 +233,8 @@ insertBatch works with MySQL transactions so you don’t need to worry about failu
 
 Example:	
 
-<pre></code>$dataArray[] = array('first_name'=>'Sid','last_name'=>'Mike','age'=>45); 
+<pre></code>
+$dataArray[] = array('first_name'=>'Sid','last_name'=>'Mike','age'=>45); 
 $dataArray[] = array('first_name'=>'Scott','last_name'=>'Dimon','age'=>78);
 $dataArray[] = array('first_name'=>'Meena','last_name'=>'Verma','age'=>23);
 
@@ -253,7 +256,8 @@ Update method is use for update a table with array data. You can send array data
 
 Example:
 
-<pre></code>$dataArray = array('first_name'=>'Sangeeta','last_name'=>'Mishra','age'=>35); 
+<pre></code>
+$dataArray = array('first_name'=>'Sangeeta','last_name'=>'Mishra','age'=>35); 
 $aWhere = array('id'=>23); 
 $data = $db->update('test', $dataArray, $aWhere->affectedRows();
 
@@ -280,7 +284,8 @@ You can delete records from table by send table name and your where clause array
 
 Example:
 
-<pre></code>$aWhere = array('age'=>35); 
+<pre></code>
+$aWhere = array('age'=>35); 
 $data = $db->delete('test', $aWhere)->affectedRows(); 
 
 Raw Query: 
@@ -303,7 +308,8 @@ You can truncate table by just pass table name.
 
 Example:
 
-<pre><code>$data = $db->truncate('test'); 
+<pre><code>
+$data = $db->truncate('test'); 
 
 Raw Query: 
 TRUNCATE TABLE `test`;
@@ -320,7 +326,8 @@ You can drop table by just pass table name.
 
 Example:
 
-<pre><code>$data = $db->drop('test'); 
+<pre><code>
+$data = $db->drop('test'); 
 
 Raw Query: 
 DROP TABLE `test`;
@@ -337,7 +344,8 @@ You can get a table field name and data type.
 
 Example:
 
-<pre><code>$data = $db->describe('test'); 
+<pre><code>
+$data = $db->describe('test'); 
 
 Raw Query: 
 DESC  `test`;
@@ -354,7 +362,8 @@ This function will return the number of total rows in a table.
 
 Example:
 
-<pre><code>$data = $db->count('test'); 
+<pre><code>
+$data = $db->count('test'); 
 
 Raw Query: 
 SELECT COUNT(*) AS numrows FROM `test`;
@@ -372,7 +381,8 @@ By this function you can get executed query. It will show raw query on your scre
 
 Example:
 
-<pre><code>$db->showQuery(); 
+<pre><code>
+$db->showQuery(); 
 
 Raw Query Example: 
 SELECT COUNT(*) AS numrows FROM `test`;
@@ -390,8 +400,7 @@ Get a newly inserted id by insert function.
 
 Example:
 
-<pre><code>$lid = $db->getLastInsertId(); 
-</code></pre>
+<pre><code>$lid = $db->getLastInsertId();</code></pre>
 
 Return: 
 Number/Integer
@@ -428,7 +437,8 @@ Array, XML and JSON. Just pass 1st param as ‘array’ or ‘xml’ or ‘json’. By defau
 
 Example:
 
-<pre><code>$data = $db->results(); 
+<pre><code>
+$data = $db->results(); 
 
 $data = $db->results('xml'); 
 
@@ -449,8 +459,7 @@ Get result from an array data by request index or false.
 
 Example:
 
-<pre><code>$data = $db->result(1); 
-</code></pre>
+<pre><code>$data = $db->result(1);</code></pre>
 
 Return: 
 Array | false
@@ -466,8 +475,7 @@ Get number of affected rows by update, delete and select etc. statement or false
 
 Example:
 
-<pre><code>$data = $db->affectedRows(); 
-</code></pre>
+<pre><code>$data = $db->affectedRows();</code></pre>
 
 Return: 
 integer | false
@@ -483,8 +491,7 @@ Start the MySQL transaction.
 
 Example:
 
-<pre><code>$db->start();
-</code></pre>
+<pre><code>$db->start();</code></pre>
 
 
 <h4>end():</h4>
@@ -497,8 +504,7 @@ Commit the MySQL transaction.
 
 Example:
 
-<pre><code>$db->end();
-</code></pre>
+<pre><code>$db->end();</code></pre>
 
 
 
@@ -512,8 +518,7 @@ Rollback the MySQL transaction.
 
 Example:
 
-<pre><code>$db->back();
-</code></pre>
+<pre><code>$db->back();</code></pre>
 
 
 
@@ -527,13 +532,13 @@ setErrorLog, method works for show/hide PDO error. If you send true then all err
 
 Example:
 
-<pre><code>$db->setErrorLog(true);
-</code></pre>
+<pre><code>$db->setErrorLog(true);</code></pre>
 
 
 
 <h4>Example Connection Page:</h4>
-<pre><code>// include PDO Class Wrapper 
+<pre><code>
+// include PDO Class Wrapper 
 include_once 'class/class.pdowrapper.php'; 
 
 // set connection data 
