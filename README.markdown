@@ -89,7 +89,7 @@ $db = PdoWrapper::getPDO($dbConfig);
 
 <h4>PDO Class Wrapper Methods Explanations:</h4>
 
-<h5>pdoQuery():</h5>
+<h5 id='pdoQuery'>pdoQuery():</h5>
 
 Method name and parameter
 
