@@ -1,16 +1,19 @@
-								<h4>PHP PDO Class Wrapper</h4>
-								<h5>[A Wrapper Class of PDO]</h5>
-								Version 1.2 (Beta)
+<h4>PHP PDO Class Wrapper</h4>
+<h5>[A Wrapper Class of PDO] *Version 1.2 (Beta)*</h5>
 
 
 <h5>Introduction:</h5>
+
 <blockquote>
 PDO Class Wrapper is a wrapper class of PDO (PHP Data Object) library.  As we know that in any web application, database makes an important role for developer to create a good dynamic web application. We can use different database drivers to make web more and more interactive and dynamic. But in any web project we also know that ‘Security’ is a big part and concern for developers. Every developer wants to keep user’s data very safe. Hence, we use much built-in functionality in PHP to prevent unauthorized access for database e.g.  mysql_real_escape_string (),  addslashes () etc. But some time it’s very difficult to manage big application with big chunk of code. So PHP improves MySQL to MySQLi (MySQL Improved). According to php.net The MySQLi extension has a number of benefits, the key enhancements over the MySQL extension being:Object-oriented interface 
-•	Support for Prepared Statements
-•	Support for Multiple Statements
-•	Support for Transactions
-•	Enhanced debugging capabilities
-•	Embedded server support
+
+<ol>
+	<li>Support for Prepared Statements</li>
+	<li>Support for Multiple Statements</li>
+	<li>Support for Transactions</li>
+	<li>Enhanced debugging capabilities</li>
+	<li>Embedded server support</li>
+</ol>	
 </blockquote>
 
 php.net
@@ -44,41 +47,44 @@ Many PHP programmers learned how to access databases by using either the MySQL o
 
 PDO Class Wrapper Features:
 PDO Class Wrapper has very classic methods like any database class library:
-•	MySQL query			pdoQuery()
-•	MySQL select query			select ()
-•	MySQL insert query 		insert ()
-•	MySQL insert batch			insertBatch()
-•	MySQL update query		update()
-•	MySQL delete query 		delete()
-•	MySQL truncate table		truncate()
-•	MySQL drop table			drop()
-•	MySQL describe table		describe()
-•	MySQL count records		count()
-•	Show/debug executed query	showQuery()
-•	Get last insert id			getLastInsertId()
-•	Get all last insert id			getAllLastInsertId()
-•	Get MySQL results			results()
-•	Get MySQL result			result()
-•	Get status of executed query	affectedRows()
-•	MySQL begin transactions		start()
-•	MySQL commit the transaction	end()
-•	MySQL rollback the transaction	back()
-•	Debugger PDO Error 		setErrorLog()
+<ol>
+	<li>MySQL query									pdoQuery()</li>
+	<li>MySQL select query							select ()</li>
+	<li>MySQL insert query 							insert ()</li>
+	<li>MySQL insert batch							insertBatch()</li>
+	<li>MySQL update query							update()</li>
+	<li>MySQL delete query 							delete()</li>
+	<li>MySQL truncate table						truncate()</li>
+	<li>MySQL drop table							drop()</li>
+	<li>MySQL describe table						describe()</li>
+	<li>MySQL count records							count()</li>
+	<li>Show/debug executed query					showQuery()</li>
+	<li>Get last insert id							getLastInsertId()</li>
+	<li>Get all last insert id						getAllLastInsertId()</li>
+	<li>Get MySQL results							results()</li>
+	<li>Get MySQL result							result()</li>
+	<li>Get status of executed query				affectedRows()</li>
+	<li>MySQL begin transactions					start()</li>
+	<li>MySQL commit the transaction				end()</li>
+	<li>MySQL rollback the transaction				back()</li>
+	<li>Debugger PDO Error 							setErrorLog()</li>
+</ol>
 
-How to Connect PDO Class:
-Example: [A]
-$dbConfig = array
-(
- "host"=>"localhost", "dbname"=>mydb, "username"=>'root', "password"=>''
-); 
-$db = new PdoWrapper($dbConfig); 
-Example: [B]
-$dbConfig = array
-(
- "host"=>"localhost", "dbname"=>mydb, "username"=>'root', "password"=>''
-); 
-$db = PdoWrapper::getPDO($dbConfig);
- 
+<h4>How to Connect PDO Class:</h4>
+<code>
+	Example: [A]
+	$dbConfig = array
+	(
+	 "host"=>"localhost", "dbname"=>mydb, "username"=>'root', "password"=>''
+	); 
+	$db = new PdoWrapper($dbConfig); 
+	Example: [B]
+	$dbConfig = array
+	(
+	 "host"=>"localhost", "dbname"=>mydb, "username"=>'root', "password"=>''
+	); 
+	$db = PdoWrapper::getPDO($dbConfig);
+</code> 
 PDO Class Wrapper Methods Explanations:
 
 pdoQuery():
