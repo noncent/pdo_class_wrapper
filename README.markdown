@@ -5,7 +5,6 @@
 
 <h5>Introduction:</h5>
 
-<blockquote>
 PDO Class Wrapper is a wrapper class of PDO (PHP Data Object) library.  As we know that in any web application, database makes an important role for developer to create a good dynamic web application. We can use different database drivers to make web more and more interactive and dynamic. But in any web project we also know that ‘Security’ is a big part and concern for developers. Every developer wants to keep user’s data very safe. Hence, we use much built-in functionality in PHP to prevent unauthorized access for database e.g.  mysql_real_escape_string (),  addslashes () etc. But some time it’s very difficult to manage big application with big chunk of code. So PHP improves MySQL to MySQLi (MySQL Improved). According to php.net The MySQLi extension has a number of benefits, the key enhancements over the MySQL extension being:Object-oriented interface 
 
 <ol>
@@ -16,9 +15,9 @@ PDO Class Wrapper is a wrapper class of PDO (PHP Data Object) library.  As we kn
 	<li>Embedded server support</li>
 </ol>	
 
-</blockquote>
 
 [source: php.net]
+<br />
 What is the PDO MYSQL driver?
 
 The PDO MYSQL driver is not an API as such, at least from the PHP programmer's perspective. In fact the PDO MYSQL driver sits in the layer below PDO itself and provides MySQL-specific functionality. The programmer still calls the PDO API, but PDO uses the PDO MYSQL driver to carry out communication with the MySQL server.
@@ -27,20 +26,10 @@ The PDO MYSQL driver is one of several available PDO drivers. Other PDO drivers 
 The PDO MYSQL driver is implemented using the PHP extension framework. Its source code is located in the directory ext/pdo_mysql. It does not expose an API to the PHP programmer. 
 
 [source: php.net]
-
+<br />
 Comparison of MySQL API options for PHP
 
- 	PHP's MySQLi Extension	PDO (Using PDO MySQL Driver and MySQL Native Driver)	PHP's MySQL Extension
-PHP version introduced	5.0	5.0	Prior to 3.0
-Included with PHP 5.x	yes	yes	Yes
-MySQL development status	Active development	Active development as of PHP 5.3	Maintenance only
-Recommended by MySQL for new projects	Yes - preferred option	Yes	No
-API supports Charsets	Yes	Yes	No
-API supports server-side Prepared Statements	Yes	Yes	No
-API supports client-side Prepared Statements	No	Yes	No
-API supports Stored Procedures	Yes	Yes	No
-API supports Multiple Statements	Yes	Most	No
-Supports all MySQL 4.1+ functionality	Yes	Most	No
+![Alt text](comparison.jpg "PDO Comparison")
 
 About PDO Class Wrapper:
 PDO Class Wrapper is a wrapper class of PDO (PHP Data Object) library. It has many useful built in functions to manage your web application database code very shorter. Also you will find some helpful method to fix your bug with very ease.
