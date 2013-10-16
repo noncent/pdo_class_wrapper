@@ -1,15 +1,17 @@
 <h4>PHP PDO Class Wrapper</h4>
-[A Wrapper Class of PDO]
+<h5>[A Wrapper Class of PDO]</h5>
 Version 1.2 (Beta)
 
 
-Introduction:
+<h5>Introduction:</h5>
+<blockquote>
 PDO Class Wrapper is a wrapper class of PDO (PHP Data Object) library.  As we know that in any web application, database makes an important role for developer to create a good dynamic web application. We can use different database drivers to make web more and more interactive and dynamic. But in any web project we also know that ‘Security’ is a big part and concern for developers. Every developer wants to keep user’s data very safe. Hence, we use much built-in functionality in PHP to prevent unauthorized access for database e.g.  mysql_real_escape_string (),  addslashes () etc. But some time it’s very difficult to manage big application with big chunk of code. So PHP improves MySQL to MySQLi (MySQL Improved). According to php.net The MySQLi extension has a number of benefits, the key enhancements over the MySQL extension being:Object-oriented interface 
 •	Support for Prepared Statements
 •	Support for Multiple Statements
 •	Support for Transactions
 •	Enhanced debugging capabilities
 •	Embedded server support
+</blockquote>
 
 php.net
 What is the PDO MYSQL driver?
