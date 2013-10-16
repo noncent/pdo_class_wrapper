@@ -47,7 +47,7 @@ Many PHP programmers learned how to access databases by using either the MySQL o
 PDO Class Wrapper has very classic methods like any database class library:
 <pre>
 <ol>
-	<li>MySQL query									<h8>pdoQuery()</h8></li>
+	<li>MySQL query									<h6>pdoQuery()</h6></li>
 	<li>MySQL select query							select ()</li>
 	<li>MySQL insert query 							insert ()</li>
 	<li>MySQL insert batch							insertBatch()</li>
