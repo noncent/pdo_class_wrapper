@@ -72,7 +72,7 @@ PDO Class Wrapper has very classic methods like any database class library:
 
 <h5>How to Connect PDO Class:</h5>
 
-<pre><code>
+<pre>
 <h6>Example: [A]</h6>		
 $dbConfig = array
 (
@@ -85,7 +85,7 @@ $dbConfig = array
 "host"=>"localhost", "dbname"=>mydb, "username"=>'root', "password"=>''
 ); 
 $db = PdoWrapper::getPDO($dbConfig);		
-</code></pre>
+</pre>
 
 <h4>PDO Class Wrapper Methods Explanations:</h4>
 
