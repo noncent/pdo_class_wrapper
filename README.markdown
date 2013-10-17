@@ -86,7 +86,7 @@ $db = new PdoWrapper($dbConfig);
 <pre>
 $dbConfig = array
 (
-"host"=>"localhost", "dbname"=>mydb, "username"=>'root', "password"=>''
+"host"=>"localhost", "dbname"=>"mydb", "username"=>'root', "password"=>''
 );
 $db = PdoWrapper::getPDO($dbConfig);
 </pre>
@@ -102,23 +102,23 @@ Method name and parameter
 This method is use for simple MySQL query; you can execute your MySQL query with parameterized parameter or as simple query.
 
 <b>Example:</b>
-<pre>
+```php
 $sql = 'select * from customers limit 5;';
 $data = $pdo->pdoQuery($sql)->results();
 
-<b>Raw Query:</b>
+Raw Query:
 SELECT * FROM customers LIMIT 5;
 
 $sql = "select * from customers where (customernumber = '0000' OR customernumber = '45121') ;";
 $data = $pdo->pdoQuery($sql)->results();
 
-<b>Raw Query:</b>
+Raw Query:
 SELECT * FROM customers WHERE (customernumber = 103 OR customernumber = 119) ;
 
 $sql = "select * from customers where (customernumber = '0000' OR customernumber = '45121') ;";
 $data = $db->pdoQuery($sql)->results();
 
-<b>Raw Query:</b>
+Raw Query:
 SELECT * FROM customers WHERE (customernumber = '0000' OR customernumber = '45121') ;
 
 $sql = "select p.checknumber, p.amount, p.paymentdate, c.customernumber,
@@ -128,12 +128,12 @@ inner join customers as c on p.customernumber = c.customernumber
 order by p.amount desc limit 2;";
 $data = $pdo->pdoQuery($sql)->results();
 
-<b>Raw Query:</b>
+Raw Query:
 SELECT p.checknumber, p.amount, p.paymentdate, c.customernumber, c.customername,
 c.contactlastname, c.contactfirstname, c.phone, c.addressline1, c.addressline2,
 c.city, c.state, c.postalcode, c.country FROM payments AS p INNER JOIN
 customers AS c ON p.customernumber = c.customernumber ORDER BY p.amount DESC LIMIT 2;
-</pre>
+```
 
 <h4>select():</h4>
 
@@ -144,13 +144,13 @@ Method name and parameter
 The select method is made for get table data from just pass table name in method, if you omit column then you will get all fields of requested table else you can pass table field by an array. If you want to pass a where clause then you can use third parameter of select method and by pass fourth parameter you can send other filters.
 
 <b>Example:</b>
-<pre>
+```php
 Get all table fields from table without passing 2nd parameter.
 
 $select = $pdo->select('customers');
 $data = $select->results();
 
-<b>Raw Query:</b>
+Raw Query:
 SELECT * FROM `customers` ;
 
 Or
@@ -159,14 +159,14 @@ You can use one line code to get a result array
 
 $data = $pdo->select('employees')->results();
 
-<b>Raw Query:</b>
+Raw Query:
 SELECT * FROM `employees` ;
 
 Get only selected fields from table
 
 $data = $db->select('employees', array('employeeNumber','lastName','firstName'))->results();
 
-<b>Raw Query:</b>
+Raw Query:
 SELECT employeenumber, lastname, firstname FROM `employees` ;
 
 Or
@@ -174,14 +174,14 @@ Or
 $fieldsArray = array('employeeNumber','lastName','firstName');
 $data = $db->select('employees', $fieldsArray)->results();
 
-<b>Raw Query:</b>
+Raw Query:
 SELECT employeenumber, lastname, firstname FROM `employees` ;
 
 $selectFields = array('employeeNumber','lastName','firstName');
 $whereConditions = array('lastname'=>'bow');
 $data = $db->select('employees', $selectFields, $whereConditions, 'ORDER BY employeeNumber DESC LIMIT 5')->results();
 
-<b>Raw Query:</b>
+Raw Query:
 SELECT employeenumber, lastname, firstname FROM `employees` WHERE lastname = "bow" ORDER BY employeenumber DESC LIMIT 5;
 
 Custom Where Clause with Select Method:
@@ -191,7 +191,7 @@ You can set your own custom where clause
 $whereConditions = array('lastname ='=>'bow', 'or jobtitle ='=> 'Sales Rep', 'and isactive ='=>1, 'and officecode ='=> 1 );
 $data = $db->select('employees','',$whereConditions)->results();
 
-<b>Raw Query:</b>
+Raw Query:
 SELECT * FROM `employees` WHERE lastname = "bow" OR jobtitle = "sales rep" AND isactive = 1 AND officecode = 1 ;
 
 OR
@@ -199,9 +199,9 @@ OR
 $whereConditions = array('lastname ='=>'bow', 'or jobtitle ='=> 'Sales Rep', 'and isactive ='=>1, 'and officecode ='=> 1 );
 $data = $db->select('employees',array('employeenumber','lastname','jobtitle'),$whereConditions)->results();
 
-<b>Raw Query:</b>
-SELECT employeenumber, lastname, jobtitle FROM `employees` WHERE lastname = "bow" OR jobtitle = "sales rep" AND isactive = 1 AND officecode = 1 ;
-</pre>
+Raw Query:
+SELECT employeenumber, lastname, jobtitle FROM 'employees' WHERE lastname = "bow" OR jobtitle = "sales rep" AND isactive = 1 AND officecode = 1 ;
+```
 
 <h4>insert():</h4>
 
@@ -212,12 +212,13 @@ Method name and parameter
 By insert method you can insert record into selected table. Just pass data as an array with fields as array key and the array data will insert in to table. Insert method automatically convert your array data in to SQL injection safe data.
 
 <b>Example:</b>
-<pre>
+```php
 $dataArray = array('first_name'=>'Sid','last_name'=>'Mike','age'=>45);
 $data = $db->insert('test',$dataArray)->getLastInsertId();
+
 Raw Query:
 INSERT INTO `test` (first_name,last_name,age) VALUES ("sid","mike",45);
-</pre>
+```
 
 <h4>insertBatch():</h4>
 
@@ -229,17 +230,17 @@ You can use this method for inserting multiple array data in same table. You hav
 insertBatch works with MySQL transactions so you don’t need to worry about failure data. It will be rollback if anything goes wrong.
 
 <b>Example:</b>
-<pre>
+```php
 $dataArray[] = array('first_name'=>'Sid','last_name'=>'Mike','age'=>45);
 $dataArray[] = array('first_name'=>'Scott','last_name'=>'Dimon','age'=>78);
 $dataArray[] = array('first_name'=>'Meena','last_name'=>'Verma','age'=>23);
 $data = $db->insertBatch('test',$dataArray, true)->getAllLastInsertId();
 
-<b>Raw Query:</b>
+Raw Query:
 INSERT INTO `test` (first_name, last_name, age) VALUES ("sid", "mike", 45);
 INSERT INTO `test` (first_name, last_name, age) VALUES ("scott", "dimon", 78);
 INSERT INTO `test` (first_name, last_name, age) VALUES ("meena", "verma", 23);
-</pre>
+```
 
 <h4>update():</h4>
 
@@ -250,12 +251,12 @@ Method name and parameter
 Update method is use for update a table with array data. You can send array data as update data in table.
 
 <b>Example:</b>
-<pre>
+```php
 $dataArray = array('first_name'=>'Sangeeta','last_name'=>'Mishra','age'=>35);
 $aWhere = array('id'=>23);
 $data = $db->update('test', $dataArray, $aWhere->affectedRows();
 
-<b>Raw Query:</b>
+Raw Query:
 UPDATE `test` SET first_name = "sangeeta", last_name = "mishra", age = 35 WHERE id = 23 ;
 
 Or
@@ -264,10 +265,10 @@ $dataArray = array('first_name'=>'Sonia','last_name'=>'Shukla','age'=>23);
 $aWhere = array('age'=>35, 'last_name'=>'Mishra');
 $data = $db->update('test', $dataArray, $aWhere)->affectedRows();
 
-<b>Raw Query:</b>
+Raw Query:
 UPDATE `test` SET first_name = "sonia", last_name = "shukla", age = 23 WHERE
 age = 35 AND last_name = "mishra" ;
-</pre>
+```
 
 <h4>delete():</h4>
 
@@ -278,19 +279,19 @@ Method name and parameter
 You can delete records from table by send table name and your where clause array.
 
 <b>Example:</b>
-<pre>
+```php
 $aWhere = array('age'=>35);
 $data = $db->delete('test', $aWhere)->affectedRows();
 
-<b>Raw Query:</b>
+Raw Query:
 DELETE FROM `test` WHERE age = 35 ;
 
 $aWhere = array('age'=>45, 'first_name'=> 'Sonu');
 $data = $db->delete('test', $aWhere)->affectedRows();
 
-<b>Raw Query:</b>
+Raw Query:
 DELETE FROM `test` WHERE age = 45 AND first_name = "sonu" ;
-</pre>
+```
 
 <h4>truncate():</h4>
 
@@ -304,7 +305,7 @@ You can truncate table by just pass table name.
 <pre>
 $data = $db->truncate('test');
 
-<b>Raw Query:</b>
+Raw Query:
 TRUNCATE TABLE `test`;
 </pre>
 
@@ -320,7 +321,7 @@ You can drop table by just pass table name.
 <pre>
 $data = $db->drop('test');
 
-<b>Raw Query:</b>
+Raw Query:
 DROP TABLE `test`;
 </pre>
 
@@ -336,7 +337,7 @@ You can get a table field name and data type.
 <pre>
 $data = $db->describe('test');
 
-<b>Raw Query:</b>
+Raw Query:
 DESC  `test`;
 </pre>
 
@@ -349,27 +350,27 @@ Method name and parameter
 This function will return the number of total rows in a table.
 
 <b>Example:</b>
-<pre>
+```php
 echo $q = $p->count('employees');
 $p->showQuery();
 
-<b>Raw Query:</b>
+Raw Query:
 23
 SELECT COUNT(*) AS numrows FROM `employees`;
 
 echo $q = $p->count('employees','firstname = "mary"');
 $p->showQuery();
 
-<b>Raw Query:</b>
+Raw Query:
 1
 SELECT COUNT(*) AS numrows FROM `employees` WHERE firstname = "mary";
 echo $q = $p->count('employees','jobtitle="Sales Rep"');
 $p->showQuery();
 
-<b>Raw Query:</b>
+Raw Query:
 17
 SELECT COUNT(*) AS numrows FROM `employees` WHERE jobtitle="sales rep";
-</pre>
+```
 
 <h4>showQuery():</h4>
 
@@ -383,7 +384,7 @@ By this function you can get executed query. It will show raw query on your scre
 <pre>
 $db->showQuery();
 
-<b>Raw Query:</b>
+Raw Query:
 SELECT COUNT(*) AS numrows FROM `test`;
 </pre>
 
@@ -427,11 +428,11 @@ Get array result data by executed SELECT or Select Query. You can get result in 
 Array, XML and JSON. Just pass 1st param as ‘array’ or ‘xml’ or ‘json’. By default it will return array.
 
 <b>Example:</b>
-<pre>
+```php
 $data = $db->results();
 $data = $db->results('xml');
 $data = $db->results('json');
-</pre>
+```
 
 Return:
 Array | XML | JSON
@@ -510,7 +511,7 @@ setErrorLog, method works for show/hide PDO error. If you send true then all err
 
 <h4>Example Connection Page:</h4>
 
-<pre>
+```php
 // include PDO Class Wrapper
 include_once 'class/class.pdowrapper.php';
 
@@ -539,7 +540,7 @@ $q = $p->update('test', $dataArray, $aWhere)->showQuery()->affectedRows();
 Output:
 UPDATE `test` SET first_name = "sangeeta", last_name = "mishra", age = 35 WHERE id = 23 ;
 1
-</pre>
+```
 
 
 Cheers!!
