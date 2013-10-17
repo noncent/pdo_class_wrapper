@@ -356,7 +356,7 @@ DESC  `test`;
 <h4>count():</h4>
 
 Method name and parameter
-<pre><code>count( string $sTable )</code></pre>
+<pre><code>count( string $sTable, string $sWhere )</code></pre>
 
 Explanations:
 This function will return the number of total rows in a table.
