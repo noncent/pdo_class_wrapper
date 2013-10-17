@@ -364,10 +364,26 @@ This function will return the number of total rows in a table.
 Example:
 
 <pre><code>
-$data = $db->count('test'); 
+echo $q = $p->count('employees');
+$p->showQuery(); 
 
-Raw Query: 
-SELECT COUNT(*) AS numrows FROM `test`;
+Raw Query:
+23
+SELECT COUNT(*) AS numrows FROM `employees`;
+
+echo $q = $p->count('employees','firstname = "mary"'); 
+$p->showQuery(); 
+
+Raw Query:
+1
+SELECT COUNT(*) AS numrows FROM `employees` WHERE firstname = "mary";
+
+echo $q = $p->count('employees','jobtitle="Sales Rep"');
+$p->showQuery(); 
+
+Raw Query:
+17
+SELECT COUNT(*) AS numrows FROM `employees` WHERE jobtitle="sales rep";
 </code></pre>
 
 
