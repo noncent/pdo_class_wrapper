@@ -361,7 +361,7 @@ Method name and parameter
 Explanations:
 This function will return the number of total rows in a table.
 
-Example:
+<i>Example:</i>
 
 <pre><code>
 echo $q = $p->count('employees');
