@@ -390,7 +390,7 @@ SELECT COUNT(*) AS numrows FROM `employees` WHERE jobtitle="sales rep";
 <h4>showQuery():</h4>
 
 Method name and parameter
-<pre><code>count( Boolean $logfile )</code></pre>
+<pre><code>showQuery( Boolean $logfile )</code></pre>
 
 
 Explanations:
