@@ -4,27 +4,32 @@ include_once '../class/class.pdohelper.php';
 // include pdo class wrapper
 include_once '../class/class.pdowrapper.php';
 
-// create new object of class wrapper
-$p = new PdoWrapper();
-// set error log mode
-$p->setErrorLog(true);
+// database connection setings
+$dbConfig = array("host"=>"localhost", "dbname"=>'sampledb', "username"=>'root', "password"=>'');
+// get instance of PDO Wrapper object
+$db = new PdoWrapper($dbConfig);
 
-// simple delete #1
+// get instance of PDO Helper object
+$helper = new PDOHelper();
+
+// set error log mode true to show error on screen or false to log in log file
+$db->setErrorLog(true);
+
+// Example -1
 
 // where condition array
 $aWhere = array('age'=>35);
 // call update function
-$q = $p->delete('test', $aWhere)->showQuery()->affectedRows();
+$q = $db->delete('test', $aWhere)->showQuery()->affectedRows();
 // print affected rows
 PDOHelper::PA($q);
 
 
-// simple delete #2
-
+// Example -2
 
 // where condition array
 $aWhere = array('age'=>45, 'first_name'=> 'Sonu');
 // call update function
-$q = $p->delete('test', $aWhere)->showQuery()->affectedRows();
+$q = $db->delete('test', $aWhere)->showQuery()->affectedRows();
 // print affected rows
 PDOHelper::PA($q);

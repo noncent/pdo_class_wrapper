@@ -1,48 +1,49 @@
 <?php
-require_once('lib/FirePHPCore/FirePHP.class.php');
-ob_start();
-$firephp = FirePHP::getInstance(true);
-
 // include pdo helper class to use common methods
 include_once '../class/class.pdohelper.php';
 // include pdo class wrapper
 include_once '../class/class.pdowrapper.php';
 
-// create new object of class wrapper
-$pdo = new PdoWrapper();
-// set error log mode
-$pdo->setErrorLog(true);
+// database connection setings
+$dbConfig = array("host"=>"localhost", "dbname"=>'sampledb', "username"=>'root', "password"=>'');
+// get instance of PDO Wrapper object
+$db = new PdoWrapper($dbConfig);
 
-echo "// select with fields and one where condition #1";
-// set fields for table
+// get instance of PDO Helper object
+$helper = new PDOHelper();
+
+// set error log mode true to show error on screen or false to log in log file
+$db->setErrorLog(true);
+
+
+// Example -1 
 $selectFields = array('customerNumber','customerName','contactLastName','contactFirstName','phone');
 // set where condition
 $whereConditions = array('customerNumber'=>103);
 // select with where and bind param use select method
-$q = $pdo->select('customers',$selectFields,$whereConditions)->showQuery()->results();
+$q = $db->select('customers',$selectFields,$whereConditions)->showQuery()->results();
+// print array result
+PDOHelper::PA($q);
+
+// Example -2 
+$whereConditions = array('lastname ='=>'bow', 'or jobtitle ='=> 'Sales Rep', 'and isactive ='=>1, 'and officecode ='=> 1 );
+$data = $db->select('employees',array('employeenumber','lastname','jobtitle'),$whereConditions)->showQuery()->results();
 // print array result
 PDOHelper::PA($q);
 
 
-$whereConditions = array('lastname ='=>'bow', 'or jobtitle ='=> 'Sales Rep', 'and isactive ='=>1, 'and officecode ='=> 1 );
-$data = $pdo->select('employees',array('employeenumber','lastname','jobtitle'),$whereConditions)->showQuery()->results();
-
-
-
-// set where condition
+// Example -3 
 $whereConditions = array('lastname ='=>'bow', 'or jobtitle ='=> 'Sales Rep', 'and isactive ='=>1, 'and officecode ='=> 1 );
 // select with where and bind param use select method
-$q = $pdo->select('employees',array('employeeNumber','lastName','firstName'),$whereConditions)->showQuery()->results();
+$q = $db->select('employees',array('employeeNumber','lastName','firstName'),$whereConditions)->showQuery()->results();
 // print array result
 PDOHelper::PA($q);
 
 
-echo "// select with fields and two where condition #2";
-// set fields for table
+// Example -4 
 $selectFields = array('customerNumber','customerName','contactLastName','contactFirstName','phone');
 // set where condition
 $whereConditions = array('customerNumber'=>103,'contactLastName'=> 'Schmitt');
-
 $array_data = array(
     'customerNumber ='=>103,
     'and contactLastName ='=> 'Schmitt',
@@ -52,28 +53,26 @@ $array_data = array(
     'or age >'=> 65
 );
 // select with where and bind param use select method
-$q = $pdo->select('customers',$selectFields,$array_data);
+$q = $db->select('customers',$selectFields,$array_data);
 // print array result
 PDOHelper::PA($q);
 
 
-echo "// select with fields and LIMIT clause condition #3";
-// set fields for table
+// Example -5 
 $selectFields = array('customerNumber','customerName','contactLastName','contactFirstName','phone');
 // set where condition
 $whereConditions = array();
 // select with where and bind param use select method
-$q = $pdo->select('customers',$selectFields,$whereConditions, 'LIMIT 10')->showQuery()->results();
+$q = $db->select('customers',$selectFields,$whereConditions, 'LIMIT 10')->showQuery()->results();
 // print array result
-PA($q);
+PDOHelper::PA($q);
 
 
-echo "// select with fields and ORDER clause condition #4";
-// set fields for table
+// Example -6 
 $selectFields = array('customerNumber','customerName','contactLastName','contactFirstName','phone');
 // set where condition
 $whereConditions = array();
 // select with where and bind param use select method
-$q = $pdo->select('customers',$selectFields,$whereConditions, 'ORDER BY customerNumber DESC LIMIT 5')->showQuery()->results();
+$q = $db->select('customers',$selectFields,$whereConditions, 'ORDER BY customerNumber DESC LIMIT 5')->showQuery()->results();
 // print array result
 PA($q);

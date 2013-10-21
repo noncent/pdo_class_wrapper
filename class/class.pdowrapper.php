@@ -795,14 +795,19 @@ class PdoWrapper extends PDO {
      * Get Total Number Of Records in Requested Table
      *
      * @param string $sTable
-     *
+     * @param string $where
      * @return number
      */
-    public function count( $sTable = '' ) {
+    public function count( $sTable = '', $sWhere = '' ) {
         // if table name not pass
         if ( !empty( $sTable ) ) {
-            // create count query
-            $this->sSql  = "SELECT COUNT(*) AS NUMROWS FROM `$sTable`;";
+            if(empty($sWhere)){
+                // create count query
+                $this->sSql  = "SELECT COUNT(*) AS NUMROWS FROM `$sTable`;";
+            }else{
+                // create count query
+                $this->sSql  = "SELECT COUNT(*) AS NUMROWS FROM `$sTable` WHERE $sWhere;";
+            }
             // pdo prepare statement
             $this->_oSTH = $this->prepare( $this->sSql );
             try {

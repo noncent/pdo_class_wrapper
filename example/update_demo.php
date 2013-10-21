@@ -4,13 +4,18 @@ include_once '../class/class.pdohelper.php';
 // include pdo class wrapper
 include_once '../class/class.pdowrapper.php';
 
-// create new object of class wrapper
-$p = new PdoWrapper();
-// set error log mode
-$p->setErrorLog(true);
+// database connection setings
+$dbConfig = array("host"=>"localhost", "dbname"=>'sampledb', "username"=>'root', "password"=>'');
+// get instance of PDO Wrapper object
+$db = new PdoWrapper($dbConfig);
 
+// get instance of PDO Helper object
+$helper = new PDOHelper();
 
-// simple update #1
+// set error log mode true to show error on screen or false to log in log file
+$db->setErrorLog(true);
+
+// Example -1
 
 // update array data
 $dataArray = array('first_name'=>'Sangeeta','last_name'=>'Mishra','age'=>35);
@@ -24,7 +29,7 @@ PDOHelper::PA($q);
 
 
 
-// simple update #2
+// Example -2
 
 // update array data
 $dataArray = array('first_name'=>'Sonia','last_name'=>'Shukla','age'=>23);
