@@ -4,7 +4,7 @@
 
 <h5>Introduction:</h5>
 
-PDO Class Wrapper is a wrapper class of PDO (PHP Data Object) library.  As we know that in any web application, database makes an important role for developer to create a good dynamic web application. We can use different database drivers to make web more and more interactive and dynamic. But in any web project we also know that �Security� is a big part and concern for developers. Every developer wants to keep user�s data very safe. Hence, we use much built-in functionality in PHP to prevent unauthorized access for database e.g.  mysql_real_escape_string (),  addslashes () etc. But some time it�s very difficult to manage big application with big chunk of code. So PHP improves MySQL to MySQLi (MySQL Improved). According to php.net The MySQLi extension has a number of benefits, the key enhancements over the MySQL extension being:Object-oriented interface
+PDO Class Wrapper is a wrapper class of PDO (PHP Data Object) library.  As we know that in any web application, database makes an important role for developer to create a good dynamic web application. We can use different database drivers to make web more and more interactive and dynamic. But in any web project we also know that Security is a big part and concern for developers. Every developer wants to keep user's data very safe. Hence, we use much built-in functionality in PHP to prevent unauthorized access for database e.g.  mysql_real_escape_string (),  addslashes () etc. But some time it's very difficult to manage big application with big chunk of code. So PHP improves MySQL to MySQLi (MySQL Improved). According to php.net The MySQLi extension has a number of benefits, the key enhancements over the MySQL extension being:Object-oriented interface
 <ol>
 <li>Support for Prepared Statements</li>
 <li>Support for Multiple Statements</li>
@@ -38,7 +38,7 @@ PDO Class Wrapper is a wrapper class of PDO (PHP Data Object) library. It has ma
 
 <h5>Advantage of using PDO:</h5>
 
-Many PHP programmers learned how to access databases by using either the MySQL or MySQLi extensions. As of PHP 5.1, there�s a better way. PHP Data Objects (PDO) provides methods for prepared statements and working with objects that will make you far more productive!
+Many PHP programmers learned how to access databases by using either the MySQL or MySQLi extensions. As of PHP 5.1, there is a better way. PHP Data Objects (PDO) provides methods for prepared statements and working with objects that will make you far more productive!
 
 <h5>PDO Class Wrapper Features:</h5>
 
