@@ -4,7 +4,7 @@
 
 <h5>Introduction:</h5>
 
-PDO Class Wrapper is a wrapper class of PDO (PHP Data Object) library.  As we know that in any web application, database makes an important role for developer to create a good dynamic web application. We can use different database drivers to make web more and more interactive and dynamic. But in any web project we also know that ‘Security’ is a big part and concern for developers. Every developer wants to keep user’s data very safe. Hence, we use much built-in functionality in PHP to prevent unauthorized access for database e.g.  mysql_real_escape_string (),  addslashes () etc. But some time it’s very difficult to manage big application with big chunk of code. So PHP improves MySQL to MySQLi (MySQL Improved). According to php.net The MySQLi extension has a number of benefits, the key enhancements over the MySQL extension being:Object-oriented interface
+PDO Class Wrapper is a wrapper class of PDO (PHP Data Object) library.  As we know that in any web application, database makes an important role for developer to create a good dynamic web application. We can use different database drivers to make web more and more interactive and dynamic. But in any web project we also know that ï¿½Securityï¿½ is a big part and concern for developers. Every developer wants to keep userï¿½s data very safe. Hence, we use much built-in functionality in PHP to prevent unauthorized access for database e.g.  mysql_real_escape_string (),  addslashes () etc. But some time itï¿½s very difficult to manage big application with big chunk of code. So PHP improves MySQL to MySQLi (MySQL Improved). According to php.net The MySQLi extension has a number of benefits, the key enhancements over the MySQL extension being:Object-oriented interface
 <ol>
 <li>Support for Prepared Statements</li>
 <li>Support for Multiple Statements</li>
@@ -38,7 +38,7 @@ PDO Class Wrapper is a wrapper class of PDO (PHP Data Object) library. It has ma
 
 <h5>Advantage of using PDO:</h5>
 
-Many PHP programmers learned how to access databases by using either the MySQL or MySQLi extensions. As of PHP 5.1, there’s a better way. PHP Data Objects (PDO) provides methods for prepared statements and working with objects that will make you far more productive!
+Many PHP programmers learned how to access databases by using either the MySQL or MySQLi extensions. As of PHP 5.1, thereï¿½s a better way. PHP Data Objects (PDO) provides methods for prepared statements and working with objects that will make you far more productive!
 
 <h5>PDO Class Wrapper Features:</h5>
 
@@ -226,8 +226,8 @@ Method name and parameter
 <pre>insertBatch(string $sTable, array $aData, boolean $safeModeInsert )</pre>
 
 <b>Explanations:</b>
-You can use this method for inserting multiple array data in same table. You have to just send full array data and rest of thing insertBatch will handle. You can send third parameter as false if you don’t want to insert parameterize insert or send true if want to secure insertions.
-insertBatch works with MySQL transactions so you don’t need to worry about failure data. It will be rollback if anything goes wrong.
+You can use this method for inserting multiple array data in same table. You have to just send full array data and rest of thing insertBatch will handle. You can send third parameter as false if you donï¿½t want to insert parameterize insert or send true if want to secure insertions.
+insertBatch works with MySQL transactions so you donï¿½t need to worry about failure data. It will be rollback if anything goes wrong.
 
 <b>Example:</b>
 ```php
@@ -254,7 +254,7 @@ Update method is use for update a table with array data. You can send array data
 ```php
 $dataArray = array('first_name'=>'Sangeeta','last_name'=>'Mishra','age'=>35);
 $aWhere = array('id'=>23);
-$data = $db->update('test', $dataArray, $aWhere->affectedRows();
+$data = $db->update('test', $dataArray, $aWhere)->affectedRows();
 
 Raw Query:
 UPDATE `test` SET first_name = "sangeeta", last_name = "mishra", age = 35 WHERE id = 23 ;
@@ -378,7 +378,7 @@ Method name and parameter
 <pre>showQuery( Boolean $logfile )</pre>
 
 <b>Explanations:</b>
-By this function you can get executed query. It will show raw query on your screen. If you want to logfile to save query then you can send 2nd param as true. By default it’s false.
+By this function you can get executed query. It will show raw query on your screen. If you want to logfile to save query then you can send 2nd param as true. By default itï¿½s false.
 
 <b>Example:</b>
 <pre>
@@ -425,7 +425,7 @@ Method name and parameter
 
 <b>Explanations:</b>
 Get array result data by executed SELECT or Select Query. You can get result in three formats
-Array, XML and JSON. Just pass 1st param as ‘array’ or ‘xml’ or ‘json’. By default it will return array.
+Array, XML and JSON. Just pass 1st param as ï¿½arrayï¿½ or ï¿½xmlï¿½ or ï¿½jsonï¿½. By default it will return array.
 
 <b>Example:</b>
 ```php
