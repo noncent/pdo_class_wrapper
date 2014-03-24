@@ -226,8 +226,8 @@ Method name and parameter
 <pre>insertBatch(string $sTable, array $aData, boolean $safeModeInsert )</pre>
 
 <b>Explanations:</b>
-You can use this method for inserting multiple array data in same table. You have to just send full array data and rest of thing insertBatch will handle. You can send third parameter as false if you don�t want to insert parameterize insert or send true if want to secure insertions.
-insertBatch works with MySQL transactions so you don�t need to worry about failure data. It will be rollback if anything goes wrong.
+You can use this method for inserting multiple array data in same table. You have to just send full array data and rest of thing insertBatch will handle. You can send third parameter as false if you don't want to insert parameterize insert or send true if want to secure insertions.
+insertBatch works with MySQL transactions so you don't need to worry about failure data. It will be rollback if anything goes wrong.
 
 <b>Example:</b>
 ```php
@@ -378,7 +378,7 @@ Method name and parameter
 <pre>showQuery( Boolean $logfile )</pre>
 
 <b>Explanations:</b>
-By this function you can get executed query. It will show raw query on your screen. If you want to logfile to save query then you can send 2nd param as true. By default it�s false.
+By this function you can get executed query. It will show raw query on your screen. If you want to logfile to save query then you can send 2nd param as true. By default it's false.
 
 <b>Example:</b>
 <pre>
@@ -425,7 +425,7 @@ Method name and parameter
 
 <b>Explanations:</b>
 Get array result data by executed SELECT or Select Query. You can get result in three formats
-Array, XML and JSON. Just pass 1st param as �array� or �xml� or �json�. By default it will return array.
+Array, XML and JSON. Just pass 1st param as 'array' or 'xml' or 'json'. By default it will return array.
 
 <b>Example:</b>
 ```php
