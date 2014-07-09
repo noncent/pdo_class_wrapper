@@ -73,23 +73,23 @@ PDO Class Wrapper has very classic methods like any database class library:
 
 <h6>Example: [A]</h6>
 
-<pre>
+```php
 $dbConfig = array
 (
 "host"=>"localhost", "dbname"=>'mydb', "username"=>'root', "password"=>''
 );
 $db = new PdoWrapper($dbConfig);
-</pre>
+```
 
 <h6>Example: [B]</h6>
 
-<pre>
+```php
 $dbConfig = array
 (
 "host"=>"localhost", "dbname"=>"mydb", "username"=>'root', "password"=>''
 );
 $db = PdoWrapper::getPDO($dbConfig);
-</pre>
+```
 
 <h4>PDO Class Wrapper Methods <b>Explanations:</b></h4>
 
