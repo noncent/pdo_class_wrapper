@@ -302,12 +302,12 @@ Method name and parameter
 You can truncate table by just pass table name.
 
 <b>Example:</b>
-<pre>
+```php
 $data = $db->truncate('test');
 
 Raw Query:
 TRUNCATE TABLE `test`;
-</pre>
+```</pre>
 
 <h4>drop():</h4>
 
@@ -318,12 +318,12 @@ Method name and parameter
 You can drop table by just pass table name.
 
 <b>Example:</b>
-<pre>
+```php
 $data = $db->drop('test');
 
 Raw Query:
 DROP TABLE `test`;
-</pre>
+```
 
 <h4>describe():</h4>
 
@@ -334,12 +334,12 @@ Method name and parameter
 You can get a table field name and data type.
 
 <b>Example:</b>
-<pre>
+```php
 $data = $db->describe('test');
 
 Raw Query:
 DESC  `test`;
-</pre>
+```
 
 <h4>count():</h4>
 
@@ -381,12 +381,12 @@ Method name and parameter
 By this function you can get executed query. It will show raw query on your screen. If you want to logfile to save query then you can send 2nd param as true. By default it's false.
 
 <b>Example:</b>
-<pre>
+```php
 $db->showQuery();
 
 Raw Query:
 SELECT COUNT(*) AS numrows FROM `test`;
-</pre>
+```
 
 <h4>getLastInsertId():</h4>
 
