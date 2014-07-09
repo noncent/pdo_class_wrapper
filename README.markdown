@@ -307,7 +307,7 @@ $data = $db->truncate('test');
 
 Raw Query:
 TRUNCATE TABLE `test`;
-```</pre>
+```
 
 <h4>drop():</h4>
 
