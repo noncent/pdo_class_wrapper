@@ -133,6 +133,26 @@ SELECT p.checknumber, p.amount, p.paymentdate, c.customernumber, c.customername,
 c.contactlastname, c.contactfirstname, c.phone, c.addressline1, c.addressline2,
 c.city, c.state, c.postalcode, c.country FROM payments AS p INNER JOIN
 customers AS c ON p.customernumber = c.customernumber ORDER BY p.amount DESC LIMIT 2;
+
++++++++++++++++++++++++++++++
+Example for 'DELETE Query'
++++++++++++++++++++++++++++++
+
+1) -Simple Delete Query
+
+$sql = "DELETE FROM `customers` WHERE customernumber = ? ";
+$affected_rows = $db->pdoQuery($sql, array(101))->affectedRows();
+
+Raw Query:
+DELETE FROM `customers` WHERE customernumber = 101
+
+2) -Delete Query with IN Operator
+
+$sql = "DELETE FROM `customers` WHERE customernumber IN (?, ?, ?, ?, ?)";
+$affected_rows = $db->pdoQuery($sql, array(103, 112, 114, 119, 121))->affectedRows();
+
+Raw Query:
+DELETE FROM `customers` WHERE customernumber IN (103, 112, 114, 119, 121)
 ```
 
 <h4>select():</h4>
