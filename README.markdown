@@ -44,30 +44,28 @@ Many PHP programmers learned how to access databases by using either the MySQL o
 
 PDO Class Wrapper has very classic methods like any database class library:
 
-<pre>
-<ol>
-<li>MySQL query									pdoQuery()</li>
-<li>MySQL select query							select ()</li>
-<li>MySQL insert query 							insert ()</li>
-<li>MySQL insert batch							insertBatch()</li>
-<li>MySQL update query							update()</li>
-<li>MySQL delete query 							delete()</li>
-<li>MySQL truncate table						truncate()</li>
-<li>MySQL drop table							drop()</li>
-<li>MySQL describe table						describe()</li>
-<li>MySQL count records							count()</li>
-<li>Show/debug executed query					showQuery()</li>
-<li>Get last insert id							getLastInsertId()</li>
-<li>Get all last insert id						getAllLastInsertId()</li>
-<li>Get MySQL results							results()</li>
-<li>Get MySQL result							result()</li>
-<li>Get status of executed query				affectedRows()</li>
-<li>MySQL begin transactions					start()</li>
-<li>MySQL commit the transaction				end()</li>
-<li>MySQL rollback the transaction				back()</li>
-<li>Debugger PDO Error 							setErrorLog()</li>
-</ol>
-</pre>
+| MySQL Syntax | PDO Wrapper Method |
+| -------------|--------------------|
+| MySQL query						| pdoQuery()             |    
+| MySQL select query				| select ()              |    
+| MySQL insert query 				| insert ()              |    
+| MySQL insert batch				| insertBatch()          |        
+| MySQL update query				| update()               |    
+| MySQL delete query 				| delete()               |    
+| MySQL truncate table				| truncate()             |    
+| MySQL drop table					| drop()                 |
+| MySQL describe table				| describe()             |    
+| MySQL count records				| count()                |    
+| Show/debug executed query			| showQuery()            |        
+| Get last insert id				| getLastInsertId()      |            
+| Get all last insert id			| getAllLastInsertId()   |                
+| Get MySQL results					| results()              |    
+| Get MySQL result					| result()               |    
+| Get status of executed query		| affectedRows()         |        
+| MySQL begin transactions			| start()                |    
+| MySQL commit the transaction		| end()                  |
+| MySQL rollback the transaction	| back()                 |
+| Debugger PDO Error 				| setErrorLog()          |        
 
 <h5>How to Connect PDO Class:</h5>
 
