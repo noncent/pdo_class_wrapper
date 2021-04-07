@@ -1028,7 +1028,7 @@ class PdoWrapper extends PDO {
             $this->helper()->errorBox($msg);
         } else {
             // show error message in log file
-            file_put_contents( self::ERROR_LOG_FILE, date( 'Y-m-d h:m:s' ) . ' :: ' . $msg . "\n", FILE_APPEND );
+            file_put_contents( self::ERROR_LOG_FILE, date( 'Y-m-d h:i:s' ) . ' :: ' . $msg . "\n", FILE_APPEND );
             // die with user message
             $this->helper()->error();
         }
@@ -1047,7 +1047,7 @@ class PdoWrapper extends PDO {
             return $this;
         }else{
             // show error message in log file
-            file_put_contents( self::SQL_LOG_FILE, date( 'Y-m-d h:m:s' ) . ' :: ' . $this->interpolateQuery() . "\n", FILE_APPEND );
+            file_put_contents( self::SQL_LOG_FILE, date( 'Y-m-d h:i:s' ) . ' :: ' . $this->interpolateQuery() . "\n", FILE_APPEND );
             return $this;
         }
     }
