@@ -182,7 +182,7 @@ class PdoWrapper extends PDO {
         if ( is_array( $dsn ) && count($dsn) > 0 ) {
             // check valid array key name
             if(!isset($dsn['host']) || !isset($dsn['dbname']) || !isset($dsn['username']) || !isset($dsn['password'])){
-                die("Dude!! You haven't pass valid db config array key.");
+                die("You haven't pass valid db config array key.");
             }
             $this->db_info = $dsn;
         }else{
@@ -190,10 +190,10 @@ class PdoWrapper extends PDO {
                 $dsn = $this->db_info;
                 // check valid array key name
                 if(!isset($dsn['host']) || !isset($dsn['dbname']) || !isset($dsn['username']) || !isset($dsn['password'])){
-                    die("Dude!! You haven't set valid db config array key.");
+                    die("You haven't set valid db config array key.");
                 }
             }else{
-                die("Dude!! You haven't set valid db config array.");
+                die("You haven't set valid db config array.");
             }
         }
         // Okay, everything is clear. now connect
