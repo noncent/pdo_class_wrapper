@@ -201,9 +201,10 @@ class PdoWrapper extends PDO {
         extract( $this->db_info );
         // try catch block start
         try {
-            // use native pdo class and connect
+            // use native pdo class and connect with persistent connection
             parent::__construct( "mysql:host=$host; dbname=$dbname", $username, $password, array(
-                PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"
+                PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
+                PDO::ATTR_PERSISTENT => true
             ) );
             // set pdo error mode silent
             $this->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT );
