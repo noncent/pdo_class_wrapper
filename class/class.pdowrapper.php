@@ -324,7 +324,7 @@ class PdoWrapper extends PDO {
         $operation[0] = strtoupper( $operation[0] );
         // check valid sql operation statement
         if ( !in_array( $operation[0], $this->aValidOperation ) ) {
-            self::error( 'invalid operation called in query. use only ' . implode( ', ', $this->aValidOperation ) );
+            self::error( 'pdoQuery - invalid operation called in query, use only ' . implode( ', ', $this->aValidOperation ) );
         }
         // sql query pass with no bind param
         if ( !empty( $sSql ) && count( $aBindWhereParam ) <= 0 ) {
@@ -406,7 +406,7 @@ class PdoWrapper extends PDO {
                 self::error( $e->getMessage() . ': ' . __LINE__ );
             } // end try catch block to get pdo error
         } else {
-            self::error( 'Query is empty..' );
+            self::error( 'pdoQuery - Query is empty..' );
         }
     }
     /**
@@ -480,7 +480,7 @@ class PdoWrapper extends PDO {
             } // end try catch block to get pdo error
         } // if table name empty 
         else {
-            self::error( 'Table name not found..' );
+            self::error( 'SELECT - Table \'$sTable\' not found..' );
         }
     }
     /**
@@ -533,10 +533,10 @@ class PdoWrapper extends PDO {
                     self::error( $e->getMessage() . ': ' . __LINE__ );
                 }
             } else {
-                self::error( 'Data not in valid format..' );
+                self::error( 'INSERT - Table \'$sTable\' - Data not in valid format..' );
             }
         } else {
-            self::error( 'Table name not found..' );
+            self::error( 'INSERT - Table \'$sTable\' not found..' );
         }
     }
     /**
@@ -638,10 +638,10 @@ class PdoWrapper extends PDO {
                 // return this object
                 return $this;
             } else {
-                self::error( 'Data not in valid format..' );
+                self::error( 'INSERT BATCH - Table \'$sTable\' - Data not in valid format..' );
             }
         } else {
-            self::error( 'Table name not found..' );
+            self::error( 'INSERT BATCH - Table \'$sTable\' not found..' );
         }
     }
     /**
@@ -705,10 +705,10 @@ class PdoWrapper extends PDO {
                     self::error( $e->getMessage() . ': ' . __LINE__ );
                 } // try catch block end
             } else {
-                self::error( 'update statement not in valid format..' );
+                self::error( 'UPDATE - Table \'$sTable\' - Update statement not in valid format..' );
             }
         } else {
-            self::error( 'Table name not found..' );
+            self::error( 'UPDATE - Table \'$sTable\' not found..' );
         }
     }
     /**
@@ -759,10 +759,10 @@ class PdoWrapper extends PDO {
                     self::error( $e->getMessage() . ': ' . __LINE__ );
                 } // end try catch here
             } else {
-                self::error( 'Not a valid where condition..' );
+                self::error( 'DELETE - Table \'$sTable\' - Not a valid where condition..' );
             }
         } else {
-            self::error( 'Table name not found..' );
+            self::error( 'DELETE - Table \'$sTable\' not found..' );
         }
     }
     /**
@@ -825,10 +825,10 @@ class PdoWrapper extends PDO {
             }
             catch ( PDOException $e ) {
                 // get pdo error and pass on error method
-                self::error( $e->getMessage() . ': ' . __LINE__ );
+                self::error( $e->getMessage() . ': COUNT - Table \'$sTable\' where \'$sWhere\' : ' . __LINE__ );
             }
         } else {
-            self::error( 'Table name not found..' );
+            self::error( 'COUNT - Table \'$sTable\' not found..' );
         }
     }
     /**
@@ -859,7 +859,7 @@ class PdoWrapper extends PDO {
                 self::error( $e->getMessage() . ': ' . __LINE__ );
             }
         } else {
-            self::error( 'Table name not found..' );
+            self::error( 'TRUNCATE - Table \'$sTable\' not found..' );
         }
     }
 
@@ -891,7 +891,7 @@ class PdoWrapper extends PDO {
                 self::error( $e->getMessage() . ': ' . __LINE__ );
             }
         } else {
-            self::error( 'Table name not found..' );
+            self::error( 'DROP - Table \'$sTable\' not found..' );
         }
     }
     /**
