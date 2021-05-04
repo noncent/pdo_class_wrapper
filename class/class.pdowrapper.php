@@ -350,7 +350,7 @@ class PdoWrapper extends PDO {
                 }
             }
             catch ( PDOException $e ) {
-                self::error( $e->getMessage() . ': ' . __LINE__ );
+                self::error("pdoQuery - " . $e->getMessage() . ': ' . __LINE__ . ". SQL: " . $sSql . " ... " . $_SERVER["SCRIPT_FILENAME"]);
             } // end try catch block
         } // if query pass with bind param 
         else if ( !empty( $sSql ) && count( $aBindWhereParam ) > 0 ) {
@@ -403,7 +403,7 @@ class PdoWrapper extends PDO {
                 }
             }
             catch ( PDOException $e ) {
-                self::error( $e->getMessage() . ': ' . __LINE__ );
+                self::error( "pdoQuery - " . $e->getMessage() . ': ' . __LINE__ . ". SQL: " . $sSql . " ... " . $_SERVER["SCRIPT_FILENAME"] );
             } // end try catch block to get pdo error
         } else {
             self::error( 'pdoQuery - Query is empty..' );
@@ -476,11 +476,11 @@ class PdoWrapper extends PDO {
             }
             catch ( PDOException $e ) {
                 // get pdo error and pass on error method
-                self::error( $e->getMessage() . ': ' . __LINE__ );
+                 self::error( self::formatErrorPDOException("SELECT", $sTable, $e) ); 
             } // end try catch block to get pdo error
         } // if table name empty 
         else {
-            self::error( 'SELECT - Table \'$sTable\' not found..' );
+            self::error( self::formatErrorTableNotDefined("SELECT", $sTable) );
         }
     }
     /**
@@ -530,13 +530,13 @@ class PdoWrapper extends PDO {
                 }
                 catch ( PDOException $e ) {
                     // get pdo error and pass on error method
-                    self::error( $e->getMessage() . ': ' . __LINE__ );
+                    self::error( self::formatErrorPDOException("INSERT", $sTable, $e) );
                 }
             } else {
-                self::error( 'INSERT - Table \'$sTable\' - Data not in valid format..' );
+                self::error( self::formatErrorDataNotInValidFormat("INSERT", $sTable) );
             }
         } else {
-            self::error( 'INSERT - Table \'$sTable\' not found..' );
+            elf::error( self::formatErrorTableNotDefined("INSERT") );
         }
     }
     /**
@@ -589,7 +589,7 @@ class PdoWrapper extends PDO {
                     }
                     catch ( PDOException $e ) {
                         // get pdo error and pass on error method
-                        self::error( $e->getMessage() . ': ' . __LINE__ );
+                        self::error( self::formatErrorPDOException("INSERT BATCH", $sTable, $e) );
                         // PDO Rollback
                         $this->back();
                     } // end try catch block
@@ -626,7 +626,7 @@ class PdoWrapper extends PDO {
                     }
                     catch ( PDOException $e ) {
                         // get pdo error and pass on error method
-                        self::error( $e->getMessage() . ': ' . __LINE__ );
+                        self::error( self::formatErrorPDOException("INSERT BATCH", $sTable, $e) );
                         // on error PDO Rollback
                         $this->back();
                     }
@@ -638,10 +638,10 @@ class PdoWrapper extends PDO {
                 // return this object
                 return $this;
             } else {
-                self::error( 'INSERT BATCH - Table \'$sTable\' - Data not in valid format..' );
+                self::error( self::formatErrorDataNotInValidFormat("INSERT BATCH", $sTable) );
             }
         } else {
-            self::error( 'INSERT BATCH - Table \'$sTable\' not found..' );
+            self::error( self::formatErrorTableNotDefined("INSERT BATCH") );
         }
     }
     /**
@@ -702,13 +702,13 @@ class PdoWrapper extends PDO {
                 }
                 catch ( PDOException $e ) {
                     // get pdo error and pass on error method
-                    self::error( $e->getMessage() . ': ' . __LINE__ );
+                    self::error( self::formatErrorPDOException("UPDATE", $sTable, $e) );
                 } // try catch block end
             } else {
-                self::error( 'UPDATE - Table \'$sTable\' - Update statement not in valid format..' );
+                self::error( self::formatErrorDataNotInValidFormat("UPDATE", $sTable) );
             }
         } else {
-            self::error( 'UPDATE - Table \'$sTable\' not found..' );
+            self::error( self::formatErrorTableNotDefined("UPDATE") );
         }
     }
     /**
@@ -756,13 +756,13 @@ class PdoWrapper extends PDO {
                 }
                 catch ( PDOException $e ) {
                     // get pdo error and pass on error method
-                    self::error( $e->getMessage() . ': ' . __LINE__ );
+                    self::error( self::formatErrorPDOException("DELETE", $sTable, $e) );
                 } // end try catch here
             } else {
-                self::error( 'DELETE - Table \'$sTable\' - Not a valid where condition..' );
+                self::error( self::formatErrorDataNotInValidFormat("DELETE", $sTable) );
             }
         } else {
-            self::error( 'DELETE - Table \'$sTable\' not found..' );
+            self::error( self::formatErrorTableNotDefined("DELETE") );
         }
     }
     /**
@@ -825,10 +825,10 @@ class PdoWrapper extends PDO {
             }
             catch ( PDOException $e ) {
                 // get pdo error and pass on error method
-                self::error( $e->getMessage() . ': COUNT - Table \'$sTable\' where \'$sWhere\' : ' . __LINE__ );
+                self::error( self::formatErrorPDOException("COUNT", $sTable, $e, "WHERE $sWhere") );
             }
         } else {
-            self::error( 'COUNT - Table \'$sTable\' not found..' );
+            self::error( self::formatErrorTableNotDefined("COUNT") );
         }
     }
     /**
@@ -856,10 +856,10 @@ class PdoWrapper extends PDO {
             }
             catch ( PDOException $e ) {
                 // get pdo error and pass on error method
-                self::error( $e->getMessage() . ': ' . __LINE__ );
+                self::error( self::formatErrorPDOException("TRUNCATE", $sTable, $e) );
             }
         } else {
-            self::error( 'TRUNCATE - Table \'$sTable\' not found..' );
+            self::error( self::formatErrorTableNotDefined("TRUNCATE") );
         }
     }
 
@@ -888,10 +888,10 @@ class PdoWrapper extends PDO {
             }
             catch ( PDOException $e ) {
                 // get pdo error and pass on error method
-                self::error( $e->getMessage() . ': ' . __LINE__ );
+                self::error( self::formatErrorPDOException("DROP", $sTable, $e) );
             }
         } else {
-            self::error( 'DROP - Table \'$sTable\' not found..' );
+            self::error( self::formatErrorTableNotDefined("DROP") );
         }
     }
     /**
@@ -1135,12 +1135,12 @@ class PdoWrapper extends PDO {
     }
     /**
      * Return real table column from array key
-     * @param array $array_key
+     * @param string $key
      * @return mixed
      */
-    public function getFieldFromArrayKey($array_key=array()){
+    public function getFieldFromArrayKey($key="") {
         // get table column from array key
-        $key_array = explode(' ',$array_key);
+        $key_array = explode(' ', $key);
         // check no of chunk
         return (count($key_array)=='2') ? $key_array[0] : ((count($key_array)> 2) ? $key_array[1] : $key_array[0]);
     }
@@ -1151,6 +1151,34 @@ class PdoWrapper extends PDO {
      */
     public function setErrorLog( $mode = false ) {
         $this->log = $mode;
+    }
+    /**
+     * Format error message for "Table name not defined" error.
+     * @param string $sOperation
+     * @return string
+     */
+    private static function formatErrorTableNotDefined( $sOperation = "") {
+        return "$sOperation - Table name not defined... " . $_SERVER["SCRIPT_FILENAME"];
+    }
+    /**
+     * Format error message for "Data not in valid format" error.
+     * @param string $sOperation
+     * @param string $sTable
+     * @return string
+     */
+    private static function formatErrorDataNotInValidFormat( $sOperation = "", $sTable = "") {
+        return "$sOperation - Table `$sTable` - Input data not in valid format or is empty... " . $_SERVER["SCRIPT_FILENAME"];
+    }
+    /**
+     * Format error message for PDOException error.
+     * @param string $sOperation
+     * @param string $sTable
+     * @param PDOException $eException
+     * @param string $sSQL
+     * @return string
+     */
+    private static function formatErrorPDOException( $sOperation = "", $sTable = "", $eException, $sSQL = "") {
+        return "$sOperation - Table `$sTable` - " . $eException->getMessage() . (!empty($sSQL) ? " - SQL: $sSQL" : "") . " ... " . $_SERVER["SCRIPT_FILENAME"];
     }
 }
 /** Class End **/
